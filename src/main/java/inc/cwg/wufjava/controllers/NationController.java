@@ -20,26 +20,38 @@ public class NationController {
 
     public void viewNation(Nation nation){
         CliNation.doViewNation(nation);
-        CliCup.DoViewCup(nation.getLastWorldCup().getName(),nation.getWorldCupParticipations(),
-                nation.getBestWCResult(),nation.getBestWorldCup().getEdition() );
-        CliCup.DoViewCup(nation.getLastConfCup().getName(),nation.getConfCupParticipations(),
-                nation.getBestCCResult(),nation.getBestConfCup().getEdition() );
-        char[] results = getLastFiveResults(nation);
-        for(int i = 0;i<5;i++){
-            System.out.print(results[i]);
+        if(nation.getLastWorldCup() != null){
+            CliCup.DoViewCup(nation.getLastWorldCup().getName(),nation.getWorldCupParticipations(),
+                    nation.getBestWCResult(),nation.getBestWorldCup().getEdition() );
         }
-        System.out.print("\n\n");
-        List<Match> matches = getMatches(nation);
-        for (Match m:
-             matches) {
-            CliMatch.doViewMatches(m);
+       if(nation.getLastConfCup() != null){
+           CliCup.DoViewCup(nation.getLastConfCup().getName(),nation.getConfCupParticipations(),
+                   nation.getBestCCResult(),nation.getBestConfCup().getEdition() );
+       }
+        if(!nation.getMatchesHome().isEmpty() || !nation.getMatchesAway().isEmpty()){
+            char[] results = getLastFiveResults(nation);
+
+            for (char result : results) {
+                System.out.print(result);
+            }
+            System.out.print("\n\n");
+            List<Match> matches = getMatches(nation);
+            for (Match m:
+                    matches) {
+                CliMatch.doViewMatches(m);
+            }
         }
+
 }
 
     private char[] getLastFiveResults(Nation nation) {
         List<Match> matches = getMatches(nation);
-        char[] results = new char[5];
-        for(int i = 0; i < 5; i++)
+        int size = 5;
+        if (matches.size()<size){
+            size = matches.size();
+        }
+        char[] results = new char[size];
+        for(int i = 0; i < size; i++)
         {
             if ((matches.get(i).getHomeNation().getName().equals(nation.getName()) && matches.get(i).getScHome() > matches.get(i).getScAway())
                     || (matches.get(i).getAwayNation().getName().equals(nation.getName()) && matches.get(i).getScHome() < matches.get(i).getScAway()))
@@ -59,7 +71,6 @@ public class NationController {
     }
 
     private List<Match> getMatches(Nation nation) {
-        List<Match> matches = matchService.getFiveLastMatches(nation);
-        return matches;
+        return matchService.getFiveLastMatches(nation);
     }
 }

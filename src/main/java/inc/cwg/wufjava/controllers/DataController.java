@@ -99,21 +99,21 @@ public class DataController {
             Nation nzl = new Nation("Nouvelle-Zélande",1815.07,0,asia,"2018","Eden Park",
                     3,1,"Pacific/Auckland",wuf);
             nzl = nationService.saveNation(nzl);
-            france.getMatchesAway().add(matchService.addMatch(nzl,france, 85, 51, locDate3, "Europe/Paris"));
+            france.getMatchesAway().add(matchService.addMatch(nzl,france, 85, 51, locDate3, "America/New_York"));
 
-            LocalDateTime locDate4 = LocalDateTime.parse("2021-07-02T04:00:00");
+            LocalDateTime locDate4 = LocalDateTime.parse("2021-07-02T03:00:00");
             Nation croatia = new Nation("Croatie",1523.75,0,europe,"2018","Stadion Maksimir",
                     5,3,"Europe/Zagreb",wuf);
           croatia = nationService.saveNation(croatia);
-            france.getMatchesAway().add(matchService.addMatch(croatia,france, 14, 42, locDate4, "Europe/Paris"));
+            france.getMatchesAway().add(matchService.addMatch(croatia,france, 14, 42, locDate4, "America/New_York"));
 
-            LocalDateTime locDate5 = LocalDateTime.parse("2021-06-27T04:00:00");
+            LocalDateTime locDate5 = LocalDateTime.parse("2021-06-27T03:00:00");
             Conf africa = new Conf("Afrique","Africaine",56,"2018", wuf);
             africa = confService.saveConf(africa);
             Nation southAfrica = new Nation("Afrique du Sud",1849.6,0,africa,"2018","Ellis Park",
                     2,1,"Africa/Johannesburg",wuf);
             southAfrica = nationService.saveNation(southAfrica);
-            france.getMatchesAway().add(matchService.addMatch(southAfrica,france, 52, 13, locDate5, "Europe/Paris"));
+            france.getMatchesAway().add(matchService.addMatch(southAfrica,france, 52, 13, locDate5, "America/New_York"));
 
 
             europe.getNations().add(france);
@@ -145,7 +145,7 @@ public class DataController {
             italy.getMatchesHome().add(matchService.addMatch(italy,wales,9, 16, locDate1, "Europe/Rome"));
 
             LocalDateTime localDateTime2= LocalDateTime.parse("2021-10-16T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(croatia,italy,14, 16, locDate2, "Europe/Rome"));
+            italy.getMatchesAway().add(matchService.addMatch(croatia,italy,14, 16, locDate2, "Europe/Zagreb"));
 
             Nation russia = new Nation("Russie",1117.13,0,europe,"2018","Luzhniki Stadium",
                     36,15,"Europe/Moscow",wuf);
@@ -154,13 +154,13 @@ public class DataController {
             italy.getMatchesHome().add(matchService.addMatch(italy,russia,16, 14, locDate3, "Europe/Rome"));
 
             LocalDateTime localDateTime4 = LocalDateTime.parse("2021-09-11T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(germany,italy,14, 16, locDate4, "Europe/Rome"));
+            italy.getMatchesAway().add(matchService.addMatch(germany,italy,14, 16, locDate4, "Europe/Berlin"));
 
             Nation switzerland = new Nation("Suisse",1127.61,0,europe,"2018","Wankdorf Stadium",
                    30,13,"Europe/Zurich",wuf );
             switzerland = nationService.saveNation(switzerland);
             LocalDateTime localDateTime5= LocalDateTime.parse("2021-08-21T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(switzerland,italy,23, 13, locDate5, "Europe/Rome"));
+            italy.getMatchesAway().add(matchService.addMatch(switzerland,italy,23, 13, locDate5, "Europe/Zurich"));
 
             europe.getNations().add(italy);
             wuf.getNations().add(italy);
@@ -182,23 +182,22 @@ public class DataController {
 
             england = nationService.saveNation(england);
 
-            locDate1 = LocalDateTime.parse("2021-11-20T21:00:00");
-           england.getMatchesHome().add(matchService.addMatch(england,france,18, 16, locDate1, "Europe/London"));
+
 
             locDate2 = LocalDateTime.parse("2021-10-16T18:30:00");
             england.getMatchesHome().add(matchService.addMatch(england,wales, 16 ,14, locDate2, "Europe/London"));
 
             locDate3 = LocalDateTime.parse("2021-07-17T03:00:00");
-            england.getMatchesHome().add(matchService.addMatch(england,southAfrica, 38, 40, locDate3, "Europe/London"));
+            england.getMatchesHome().add(matchService.addMatch(england,southAfrica, 38, 40, locDate3, "America/New_York"));
 
             Nation australia = new Nation("Australie",1469.09,0,asia,"2018","Stadium Australia",
                     6,2,"Australia/Sydney",wuf);
             australia = nationService.saveNation(australia);
             locDate4 = LocalDateTime.parse("2021-07-14T00:30:00");
-            england.getMatchesHome().add(matchService.addMatch(england,australia, 121, 127, locDate4, "Europe/London"));
+            england.getMatchesHome().add(matchService.addMatch(england,australia, 121, 127, locDate4, "America/New_York"));
 
             locDate5 = LocalDateTime.parse("2021-07-08T00:30:00");
-            england.getMatchesAway().add(matchService.addMatch(ireland,england, 15, 55, locDate5, "Europe/London"));
+            england.getMatchesAway().add(matchService.addMatch(ireland,england, 15, 55, locDate5, "America/New_York"));
 
 
             europe.getNations().add(england);
@@ -278,8 +277,7 @@ public class DataController {
             canada.setBestCLResult("2eme");
 
             canada = nationService.saveNation(canada);
-            locDate1 = LocalDateTime.parse("2021-11-14T03:00:00");
-            canada.getMatchesAway().add(matchService.addMatch(usa,canada, 16, 14, locDate1,"America/Toronto"));
+
 
             Nation mexico = new Nation("Mexique",1232.1,0,americas,"2018","Estadio Azteca",
                    17,3,"America/Mexico_City",wuf);
@@ -297,13 +295,13 @@ public class DataController {
                     14,7,"Europe/London",wuf);
             scotland = nationService.saveNation(scotland);
             locDate4 = LocalDateTime.parse("2021-07-01T03:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,scotland,31, 105, locDate4,"America/Toronto"));
+            canada.getMatchesHome().add(matchService.addMatch(canada,scotland,31, 105, locDate4,"America/New_York"));
 
             Nation kenya = new Nation("Kenya",1307.61,0,africa,"2018","Nyayo National Stadium",
                     12,2,"Africa/Nairobi",wuf);
             kenya = nationService.saveNation(kenya);
             locDate5 = LocalDateTime.parse("2021-06-27T01:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,kenya, 63,55, locDate5, "America/Toronto"));
+            canada.getMatchesHome().add(matchService.addMatch(canada,kenya, 63,55, locDate5, "America/New_York"));
 
 
             americas.getNations().add(canada);

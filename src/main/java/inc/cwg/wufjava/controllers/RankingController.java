@@ -12,13 +12,7 @@ import java.util.List;
 
 @Controller
 public class RankingController {
-    private final WufBoardService wufBoardService;
-    private final ConfService confService;
 
-    public RankingController(WufBoardService wufBoardService, ConfService confService) {
-        this.wufBoardService = wufBoardService;
-        this.confService = confService;
-    }
 
     public  List<Nation> fetchWorldRanking(WufBoard wuf) {
         List<Nation> nations = wuf.getNations();

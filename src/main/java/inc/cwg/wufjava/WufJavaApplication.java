@@ -46,7 +46,7 @@ public class WufJavaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		WufBoard wuf = wufBoardService.fetchWufBoard(1);
-		char key = 'n';
+		char key = 'y';
 		do{
 			Scanner sc = new Scanner(System.in);
 			int startMenu = CliMenu.startMenu();
@@ -92,8 +92,9 @@ public class WufJavaApplication implements CommandLineRunner {
 				List<Nation> list = rankingController.fetchWorldRanking(wuf);
 				rankingController.viewRanking(list);
 			}
-			System.out.println("quitter? (y/n)");
+			System.out.println("continuer? (y/n)");
 			key = sc.nextLine().charAt(0);
-		}while(key !='y');
+		}while(key !='n');
+
 	}
 }
