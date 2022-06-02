@@ -15,5 +15,6 @@ public class CliMatch {
         ZonedDateTime convertedDateTime = matchZonedTime.withZoneSameInstant(ZoneId.of(match.getTimeZone()));
         String format = "yyyy-MM-dd HH:mm:ss z";
         System.out.println("date: " + convertedDateTime.format(DateTimeFormatter.ofPattern(format)));
+        System.out.println("venue: "+match.getVenue().getName()+", "+match.getVenue().getCity()+", "+match.getVenue().getCountry().getName());
     }
 }

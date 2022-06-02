@@ -13,7 +13,9 @@ public class Nation extends Country{
 
     private String admissionYear;
 
-    private String stadium;
+    @OneToOne
+    @JoinColumn(name = "main_stadium_id")
+    private Stadium mainStadium;
 
     private int wufRanking;
 
@@ -87,12 +89,12 @@ public class Nation extends Country{
         this.admissionYear = admissionYear;
     }
 
-    public String getStadium() {
-        return stadium;
+    public Stadium getMainStadium() {
+        return mainStadium;
     }
 
-    public void setStadium(String stadium) {
-        this.stadium = stadium;
+    public void setMainStadium(Stadium stadium) {
+        this.mainStadium = stadium;
     }
 
     public int getWufRanking() {
@@ -258,12 +260,12 @@ public class Nation extends Country{
     public Nation() {
     }
 
-    public Nation(String name, double pts, int score, Conf conf, String admissionYear, String stadium,
+    public Nation(String name, double pts, int score, Conf conf, String admissionYear, Stadium stadium,
                   int wufRanking, int confRanking, String timeZone, WufBoard board) {
         super(name, pts, score);
         this.conf = conf;
         this.admissionYear = admissionYear;
-        this.stadium = stadium;
+        this.mainStadium = stadium;
         this.wufRanking = wufRanking;
         this.confRanking = confRanking;
         this.timeZone = timeZone;
@@ -275,7 +277,7 @@ public class Nation extends Country{
         return "Nation{" +
                 "conf=" + conf +
                 ", admissionYear='" + admissionYear + '\'' +
-                ", stadium='" + stadium + '\'' +
+                ", stadium='" + mainStadium.getName() + '\'' +
                 ", wufRanking=" + wufRanking +
                 ", confRanking=" + confRanking +
                 ", worldCupParticipations=" + worldCupParticipations +

@@ -1,15 +1,14 @@
 package inc.cwg.wufjava.services;
 
-import inc.cwg.wufjava.models.Conf;
-import inc.cwg.wufjava.models.ConfLeague;
-import inc.cwg.wufjava.models.Match;
-import inc.cwg.wufjava.models.Nation;
+import inc.cwg.wufjava.models.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MatchService {
-    Match addMatch(Nation homeNation, Nation awayNation, int scHome, int scAway, LocalDateTime matchTime, String timeZone);
+
+    Match addMatch(Nation homeNation, Nation awayNation, int scHome, int scAway,
+                   LocalDateTime matchTime, String timeZone, Stadium venue);
 
     List<Match> fetchMatches();
 

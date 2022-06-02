@@ -3,6 +3,7 @@ package inc.cwg.wufjava.services.impl;
 import inc.cwg.wufjava.dao.MatchDao;
 import inc.cwg.wufjava.models.Match;
 import inc.cwg.wufjava.models.Nation;
+import inc.cwg.wufjava.models.Stadium;
 import inc.cwg.wufjava.services.MatchService;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,9 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Match addMatch(Nation homeNation, Nation awayNation, int scHome, int scAway, LocalDateTime matchTime, String timeZone) {
-        return matchDao.save(new Match(homeNation,awayNation,scHome,scAway,matchTime,timeZone));
+    public Match addMatch(Nation homeNation, Nation awayNation, int scHome, int scAway,
+                          LocalDateTime matchTime, String timeZone, Stadium venue) {
+        return matchDao.save(new Match(homeNation,awayNation,scHome,scAway,matchTime,timeZone,venue));
     }
 
     @Override

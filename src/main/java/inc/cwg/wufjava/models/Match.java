@@ -27,7 +27,19 @@ public class Match {
 
     private String timeZone;
 
+    @OneToOne
+    @JoinColumn(name = "venue_id")
+    private Stadium venue;
 
+
+
+    public Stadium getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Stadium venue) {
+        this.venue = venue;
+    }
 
     public Nation getAwayNation() {
         return awayNation;
@@ -88,13 +100,14 @@ public class Match {
 
     public Match(){}
 
-    public Match(Nation homeNation, Nation awayNation, int scHome, int scAway, LocalDateTime matchTime, String timeZone) {
+    public Match(Nation homeNation, Nation awayNation, int scHome, int scAway, LocalDateTime matchTime, String timeZone, Stadium venue) {
         this.homeNation = homeNation;
         this.awayNation = awayNation;
         this.scHome = scHome;
         this.scAway = scAway;
         this.matchTime = matchTime;
         this.timeZone = timeZone;
+        this.venue = venue;
     }
 
     @Override
@@ -107,6 +120,7 @@ public class Match {
                 ", scAway=" + scAway +
                 ", matchTime=" + matchTime +
                 ", timeZone='" + timeZone + '\'' +
+                ", venue='" + venue.getName() + '\''+
                 '}';
     }
 }
