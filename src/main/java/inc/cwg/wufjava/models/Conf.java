@@ -66,6 +66,7 @@ public class Conf extends Organization {
 
     public Conf(String name, String adjective, int nbMembers, String dof, WufBoard wuf) {
         super(name, adjective, nbMembers, dof);
+        this.wufBoard = wuf;
     }
 
     @Override

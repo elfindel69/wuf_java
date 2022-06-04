@@ -10,7 +10,7 @@ public class ConfCup extends Cup{
 
     @ManyToOne
     @JoinColumn(name = "conf_id")
-    private Conf conf;
+    protected Conf conf;
 
     public Conf getConf() {
         return conf;

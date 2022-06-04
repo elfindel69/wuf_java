@@ -2,7 +2,8 @@ package inc.cwg.wufjava.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -23,6 +24,39 @@ public abstract class Cup {
     @OneToOne( orphanRemoval = true)
     @JoinColumn(name = "host_id")
     protected Nation host;
+
+    @OneToMany(mappedBy = "cup", orphanRemoval = true)
+    private List<MatchCup> matchCups = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cup", orphanRemoval = true)
+    private List<CountryCup> participants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cup", orphanRemoval = true)
+    private List<League> groups = new ArrayList<>();
+
+    public List<League> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<League> groups) {
+        this.groups = groups;
+    }
+
+    public List<CountryCup> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<CountryCup> participants) {
+        this.participants = participants;
+    }
+
+    public List<MatchCup> getMatchCups() {
+        return matchCups;
+    }
+
+    public void setMatchCups(List<MatchCup> matchCups) {
+        this.matchCups = matchCups;
+    }
 
     public Nation getHost() {
         return host;

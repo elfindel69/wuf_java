@@ -19,10 +19,14 @@ public class DataController {
     private final ConfLeagueService confLeagueService;
     private final MatchService matchService;
     private final StadiumService stadiumService;
+    private final MatchCupService matchCupService;
+    private final LeagueService leagueService;
+    private final MatchLeagueService matchLeagueService;
 
     public DataController(WufBoardService wufBoardService, ConfService confService, NationService nationService,
                           WorldCupService worldCupService, ConfCupService confCupService, ConfLeagueService confLeagueService,
-                          MatchService matchService, StadiumService stadiumService) {
+                          MatchService matchService, StadiumService stadiumService, MatchCupService matchCupService,
+                          LeagueService leagueService, MatchLeagueService matchLeagueService) {
         this.wufBoardService = wufBoardService;
         this.confService = confService;
         this.nationService = nationService;
@@ -31,6 +35,9 @@ public class DataController {
         this.confLeagueService = confLeagueService;
         this.matchService = matchService;
         this.stadiumService = stadiumService;
+        this.matchCupService = matchCupService;
+        this.leagueService = leagueService;
+        this.matchLeagueService = matchLeagueService;
     }
 
     @PostConstruct
@@ -49,6 +56,16 @@ public class DataController {
                     LocalDate.parse("2021-06-03"), LocalDate.parse("2021-07-17"),usa);
             worldCup2021 = worldCupService.saveWorldCup(worldCup2021);
             wuf.getWorldCups().add(worldCup2021);
+            League wc2021GroupE = new League("Coupe du Monde 2021","2021","Groupe E");
+            wc2021GroupE.setCup(worldCup2021);
+            wc2021GroupE = leagueService.saveLeague(wc2021GroupE);
+            League wc2021GroupD = new League("Coupe du Monde 2021","2021","Groupe D");
+            wc2021GroupD.setCup(worldCup2021);
+            wc2021GroupD = leagueService.saveLeague(wc2021GroupD);
+            League wc2021GroupF = new League("Coupe du Monde 2021","2021","Groupe F");
+            wc2021GroupF.setCup(worldCup2021);
+            wc2021GroupF = leagueService.saveLeague(wc2021GroupF);
+
 
             Conf europe = new Conf("Europe", "européen", 54, "2018", wuf);
             europe = confService.saveConf(europe);
@@ -69,6 +86,9 @@ public class DataController {
             eu2A2019 = confLeagueService.saveConfLeague(eu2A2019);
             europe.getConfLeagues().add(eu2A2019);
             europe = confService.saveConf(europe);
+            ConfCup qualifsEu2023 = new ConfCup("Qualifications Coupe d'Europe 2023","2021",
+                    LocalDate.parse("2021-09-06"),LocalDate.parse("2021-11-28"),null,europe);
+            qualifsEu2023 = confCupService.saveConfCup(qualifsEu2023);
 
             Nation france = new Nation("France", 1294.97, 0, europe,"2018",
                     null,  13, 6,"Europe/Paris",wuf);
@@ -98,7 +118,7 @@ public class DataController {
             Stadium twickhenham = stadiumService.addStadium("Twickenham Stadium","London",england);
             england.setMainStadium(twickhenham);
             england = nationService.saveNation(england);
-            france.getMatchesAway().add(matchService.addMatch(england, france, 18, 16, locDate1, "Europe/Paris",twickhenham));
+            france.getMatchesAway().add(matchCupService.addMatchCup(england, france, 18, 16, locDate1, "Europe/Paris",twickhenham,qualifsEu2023));
 
             LocalDateTime locDate2 = LocalDateTime.parse("2021-11-13T21:00:00");
             Nation ireland = new Nation("Irlande",1442.74,0,europe,"2018",null,
@@ -107,7 +127,7 @@ public class DataController {
             Stadium aviva= stadiumService.addStadium("Aviva Stadium","Dublin",ireland);
           ireland.setMainStadium(aviva);
             nationService.saveNation(ireland);
-            france.getMatchesAway().add(matchService.addMatch(ireland,france, 14, 16, locDate2, "Europe/Dublin",aviva));
+            france.getMatchesAway().add(matchCupService.addMatchCup(ireland,france, 14, 16, locDate2, "Europe/Dublin",aviva,qualifsEu2023));
 
             LocalDateTime locDate3 = LocalDateTime.parse("2021-07-09T03:00:00");
             Conf asia = new Conf("Asie","Astiatique",59,"2018", wuf);
@@ -119,7 +139,7 @@ public class DataController {
             nzl.setMainStadium(edenPark);
             nationService.saveNation(nzl);
             Stadium yankee = stadiumService.addStadium("Yankee Stadium","New York",usa);
-            france.getMatchesAway().add(matchService.addMatch(nzl,france, 85, 51, locDate3, "America/New_York",fedExField));
+            france.getMatchesAway().add(matchCupService.addMatchCup(nzl,france, 85, 51, locDate3, "America/New_York",fedExField,worldCup2021));
 
             LocalDateTime locDate4 = LocalDateTime.parse("2021-07-02T03:00:00");
             Nation croatia = new Nation("Croatie",1523.75,0,europe,"2018",null,
@@ -128,7 +148,7 @@ public class DataController {
             Stadium maksimir = stadiumService.addStadium("Stadion Maksimir","Zagreb",croatia);
          croatia.setMainStadium(maksimir);
             nationService.saveNation(croatia);
-            france.getMatchesAway().add(matchService.addMatch(croatia,france, 14, 42, locDate4, "America/New_York",fedExField));
+            france.getMatchesAway().add(matchCupService.addMatchCup(croatia,france, 14, 42, locDate4, "America/New_York",fedExField,worldCup2021));
 
             LocalDateTime locDate5 = LocalDateTime.parse("2021-06-27T03:00:00");
             Conf africa = new Conf("Afrique","Africaine",56,"2018", wuf);
@@ -139,7 +159,7 @@ public class DataController {
             Stadium ellisPark = stadiumService.addStadium("Ellis Park","Johannesburg",southAfrica);
             southAfrica.setMainStadium(ellisPark);
             nationService.saveNation(southAfrica);
-            france.getMatchesAway().add(matchService.addMatch(southAfrica,france, 52, 13, locDate5, "America/New_York",yankee));
+            france.getMatchesAway().add(matchLeagueService.addMatchLeague(southAfrica,france, 52, 13, locDate5, "America/New_York",yankee,wc2021GroupE));
 
 
             europe.getNations().add(france);
@@ -173,10 +193,10 @@ public class DataController {
             Stadium millenium = stadiumService.addStadium("Millenium Stadium","Cardiff",wales);
            wales.setMainStadium(millenium);
             nationService.saveNation(wales);
-            italy.getMatchesHome().add(matchService.addMatch(italy,wales,9, 16, locDate1, "Europe/Rome",olympico));
+            italy.getMatchesHome().add(matchCupService.addMatchCup(italy,wales,9, 16, locDate1, "Europe/Rome",olympico,qualifsEu2023));
 
             LocalDateTime localDateTime2= LocalDateTime.parse("2021-10-16T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(croatia,italy,14, 16, locDate2, "Europe/Zagreb",maksimir));
+            italy.getMatchesAway().add(matchCupService.addMatchCup(croatia,italy,14, 16, locDate2, "Europe/Zagreb",maksimir,qualifsEu2023));
 
             Nation russia = new Nation("Russie",1117.13,0,europe,"2018",null,
                     36,15,"Europe/Moscow",wuf);
@@ -185,10 +205,10 @@ public class DataController {
             russia.setMainStadium(luzhniki);
             nationService.saveNation(russia);
             LocalDateTime localDateTime3= LocalDateTime.parse("2021-09-18T21:00:00");
-            italy.getMatchesHome().add(matchService.addMatch(italy,russia,16, 14, locDate3, "Europe/Rome",olympico));
+            italy.getMatchesHome().add(matchCupService.addMatchCup(italy,russia,16, 14, locDate3, "Europe/Rome",olympico,qualifsEu2023));
 
             LocalDateTime localDateTime4 = LocalDateTime.parse("2021-09-11T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(germany,italy,14, 16, locDate4, "Europe/Berlin",olympia));
+            italy.getMatchesAway().add(matchCupService.addMatchCup(germany,italy,14, 16, locDate4, "Europe/Berlin",olympia,qualifsEu2023));
 
             Nation switzerland = new Nation("Suisse",1127.61,0,europe,"2018",null,
                    30,13,"Europe/Zurich",wuf );
@@ -197,7 +217,7 @@ public class DataController {
             switzerland.setMainStadium(wankdorf);
             nationService.saveNation(switzerland);
             LocalDateTime localDateTime5= LocalDateTime.parse("2021-08-21T21:00:00");
-            italy.getMatchesAway().add(matchService.addMatch(switzerland,italy,23, 13, locDate5, "Europe/Zurich",wankdorf));
+            italy.getMatchesAway().add(matchCupService.addMatchCup(switzerland,italy,23, 13, locDate5, "Europe/Zurich",wankdorf,qualifsEu2023));
 
             europe.getNations().add(italy);
             wuf.getNations().add(italy);
@@ -222,10 +242,10 @@ public class DataController {
 
 
             locDate2 = LocalDateTime.parse("2021-10-16T18:30:00");
-            england.getMatchesHome().add(matchService.addMatch(england,wales, 16 ,14, locDate2, "Europe/London",twickhenham));
+            england.getMatchesHome().add(matchCupService.addMatchCup(england,wales, 16 ,14, locDate2, "Europe/London",twickhenham,qualifsEu2023));
 
             locDate3 = LocalDateTime.parse("2021-07-17T03:00:00");
-            england.getMatchesHome().add(matchService.addMatch(england,southAfrica, 38, 40, locDate3, "America/New_York",yankee));
+            england.getMatchesHome().add(matchCupService.addMatchCup(england,southAfrica, 38, 40, locDate3, "America/New_York",yankee,worldCup2021));
 
             Nation australia = new Nation("Australie",1469.09,0,asia,"2018",null,
                     6,2,"Australia/Sydney",wuf);
@@ -234,10 +254,10 @@ public class DataController {
             australia.setMainStadium(stadiumAustralia);
             nationService.saveNation(australia);
             locDate4 = LocalDateTime.parse("2021-07-14T00:30:00");
-            england.getMatchesHome().add(matchService.addMatch(england,australia, 121, 127, locDate4, "America/New_York",yankee));
+            england.getMatchesHome().add(matchCupService.addMatchCup(england,australia, 121, 127, locDate4, "America/New_York",yankee,worldCup2021));
             Stadium gilette = stadiumService.addStadium("Gillette Stadium","Boston",usa);
             locDate5 = LocalDateTime.parse("2021-07-08T00:30:00");
-            england.getMatchesAway().add(matchService.addMatch(ireland,england, 15, 55, locDate5, "America/New_York",gilette));
+            england.getMatchesAway().add(matchCupService.addMatchCup(ireland,england, 15, 55, locDate5, "America/New_York",gilette,worldCup2021));
 
 
             europe.getNations().add(england);
@@ -251,6 +271,10 @@ public class DataController {
             ConfLeague am1A2019 = new ConfLeague("Ligue des Nations - Amériques", "2020", "1A", americas);
             americas.getConfLeagues().add(am1A2019);
             am1A2019 = confLeagueService.saveConfLeague(am1A2019);
+
+            ConfCup qualifsAm2023 = new ConfCup("Qualifications Coupe des Amériques 2023","2021", LocalDate.parse("2021-09-06"),
+                    LocalDate.parse("2021-11-28"),null,americas);
+            qualifsAm2023 = confCupService.saveConfCup(qualifsAm2023);
             usa.setWorldCupParticipations(1);
             usa.setBestWorldCup(worldCup2021);
             usa.setLastWorldCup(worldCup2021);
@@ -274,7 +298,7 @@ public class DataController {
             panama.setMainStadium(rommelFernandez);
             nationService.saveNation(panama);
             locDate1 = LocalDateTime.parse("2021-11-21T03:00:00");
-            usa.getMatchesHome().add(matchService.addMatch(usa,panama, 16, 14, locDate1, "America/New_York",fedExField));
+            usa.getMatchesHome().add(matchCupService.addMatchCup(usa,panama, 16, 14, locDate1, "America/New_York",fedExField,qualifsAm2023));
 
             Nation canada = new Nation("Canada", 1336.97, 0, americas, "2018",null,
                     11, 2,"America/Toronto",wuf);
@@ -283,7 +307,7 @@ public class DataController {
             canada.setMainStadium(tdPlace);
             canada = nationService.saveNation(canada);
             locDate2 = LocalDateTime.parse("2021-11-14T03:00:00");
-            usa.getMatchesHome().add(matchService.addMatch(usa,canada, 16, 14, locDate2, "America/New_York",fedExField));
+            usa.getMatchesHome().add(matchCupService.addMatchCup(usa,canada, 16, 14, locDate2, "America/New_York",fedExField,qualifsAm2023));
 
             Nation japan = new Nation("Japon",1454.49,0,asia,"2018",null,
                     7,3,"Asia/Tokyo",wuf);
@@ -292,7 +316,7 @@ public class DataController {
             nationService.saveNation(japan);
             locDate3 = LocalDateTime.parse("2021-06-30T03:00:00");
             Stadium subaruPark = stadiumService.addStadium("Subaru Park","Philadelphia",usa);
-            usa.getMatchesHome().add(matchService.addMatch(usa,japan,23, 73, locDate3, "America/New_York",subaruPark));
+            usa.getMatchesHome().add(matchCupService.addMatchCup(usa,japan,23, 73, locDate3, "America/New_York",subaruPark,worldCup2021));
 
             Nation sweden = new Nation("Suède",1384.6,0,europe,"2018",null,
                     9,5,"Europe/Stockholm",wuf);
@@ -300,7 +324,7 @@ public class DataController {
             sweden.setMainStadium(stadiumService.addStadium("Friends Arena","Solna",sweden));
             nationService.saveNation(sweden);
             locDate4 = LocalDateTime.parse("2021-06-25T03:00:00");
-            usa.getMatchesHome().add(matchService.addMatch(usa,sweden, 21, 20, locDate4, "America/New_York",subaruPark));
+            usa.getMatchesHome().add(matchLeagueService.addMatchLeague(usa,sweden, 21, 20, locDate4, "America/New_York",subaruPark,wc2021GroupD));
 
             Nation namibia = new Nation("Namibie",1253.96,0,africa,"2018",null,
                    16,3,"Africa/Windhoek",wuf);
@@ -308,7 +332,7 @@ public class DataController {
             namibia.setMainStadium(stadiumService.addStadium("Hage Geingob Rugby Stadium","Windhoek",namibia));
             nationService.saveNation(namibia);
             locDate5 = LocalDateTime.parse("2021-06-19T03:00:00");
-            usa.getMatchesHome().add(matchService.addMatch(usa,namibia, 145, 19, locDate5, "America/New_York",yankee));
+            usa.getMatchesHome().add(matchLeagueService.addMatchLeague(usa,namibia, 145, 19, locDate5, "America/New_York",yankee,wc2021GroupD));
 
 
             americas.getNations().add(usa);
@@ -338,7 +362,7 @@ public class DataController {
             mexico.setMainStadium(stadiumService.addStadium("Estadio Azteca","Mexico City",mexico));
             nationService.saveNation(mexico);
             locDate2 = LocalDateTime.parse("2021-10-17T03:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,mexico, 16, 9, locDate2, "America/Toronto",tdPlace));
+            canada.getMatchesHome().add(matchCupService.addMatchCup(canada,mexico, 16, 9, locDate2, "America/Toronto",tdPlace,qualifsAm2023));
 
             Nation argentina = new Nation("Argentine",1088.31,0,americas,"2018",null,
                     42,7,"America/La_Paz",wuf);
@@ -346,7 +370,7 @@ public class DataController {
             argentina.setMainStadium(stadiumService.addStadium("José Amalfitani Stadium","La Paz",argentina));
             nationService.saveNation(argentina);
             locDate3 = LocalDateTime.parse("2021-09-19T01:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,argentina,16,9, locDate3, "America/Toronto",tdPlace));
+            canada.getMatchesHome().add(matchCupService.addMatchCup(canada,argentina,16,9, locDate3, "America/Toronto",tdPlace,qualifsAm2023));
 
             Nation scotland = new Nation("Ecosse", 1267.92,0,europe,"2018",null,
                     14,7,"Europe/London",wuf);
@@ -354,7 +378,7 @@ public class DataController {
             scotland.setMainStadium(stadiumService.addStadium("Murrayfield Stadium","Edinburgh",scotland));
             nationService.saveNation(scotland);
             locDate4 = LocalDateTime.parse("2021-07-01T03:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,scotland,31, 105, locDate4,"America/New_York",fedExField));
+            canada.getMatchesHome().add(matchCupService.addMatchCup(canada,scotland,31, 105, locDate4,"America/New_York",fedExField,worldCup2021));
 
             Nation kenya = new Nation("Kenya",1307.61,0,africa,"2018",null,
                     12,2,"Africa/Nairobi",wuf);
@@ -362,7 +386,7 @@ public class DataController {
             kenya.setMainStadium(stadiumService.addStadium("Nyayo National Stadium","Nairobi",kenya));
             nationService.saveNation(kenya);
             locDate5 = LocalDateTime.parse("2021-06-27T01:00:00");
-            canada.getMatchesHome().add(matchService.addMatch(canada,kenya, 63,55, locDate5, "America/New_York",fedExField));
+            canada.getMatchesHome().add(matchLeagueService.addMatchLeague(canada,kenya, 63,55, locDate5, "America/New_York",fedExField,wc2021GroupF));
 
 
             americas.getNations().add(canada);

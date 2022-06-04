@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name="matches")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
