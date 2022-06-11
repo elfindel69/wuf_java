@@ -1,8 +1,5 @@
 package inc.cwg.wufjava.controllers;
 
-import inc.cwg.wufjava.cli.CliCup;
-import inc.cwg.wufjava.cli.CliMatch;
-import inc.cwg.wufjava.cli.CliNation;
 import inc.cwg.wufjava.models.Match;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.services.MatchService;
