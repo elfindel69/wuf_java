@@ -15,13 +15,13 @@ public class Stadium {
 
     @OneToOne
     @JoinColumn(name = "country_id")
-    private Country country;
+    private Nation country;
 
-    public Country getCountry() {
+    public Nation getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(Nation country) {
         this.country = country;
     }
 
@@ -52,7 +52,7 @@ public class Stadium {
     public Stadium() {
     }
 
-    public Stadium(String name, String city, Country country) {
+    public Stadium(String name, String city, Nation country) {
         this.name = name;
         this.city = city;
         this.country = country;

@@ -41,7 +41,7 @@ Caused by: java.util.InputMismatchException: null
 	at java.base/java.util.Scanner.next(Scanner.java:1598) ~[na:na]
 	at java.base/java.util.Scanner.nextDouble(Scanner.java:2569) ~[na:na]
 	at inc.cwg.wufjava.cli.CliCountry.NewCountry(CliCountry.java:14) ~[classes/:na]
-	at inc.cwg.wufjava.controllers.ContMenu.execScores(ContMenu.java:17) ~[classes/:na]
+	at inc.cwg.wufjava.controllers.MenuController.execScores(ContMenu.java:17) ~[classes/:na]
 	at inc.cwg.wufjava.WufJavaApplication.run(WufJavaApplication.java:57) ~[classes/:na]
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:771) ~[spring-boot-2.7.0.jar:2.7.0]
 	... 8 common frames omitted
@@ -92,7 +92,7 @@ Caused by: java.util.InputMismatchException: null
 	at java.base/java.util.Scanner.next(Scanner.java:1598) ~[na:na]
 	at java.base/java.util.Scanner.nextDouble(Scanner.java:2569) ~[na:na]
 	at inc.cwg.wufjava.cli.CliCountry.NewCountry(CliCountry.java:14) ~[classes/:na]
-	at inc.cwg.wufjava.controllers.ContMenu.execScores(ContMenu.java:17) ~[classes/:na]
+	at inc.cwg.wufjava.controllers.MenuController.execScores(ContMenu.java:17) ~[classes/:na]
 	at inc.cwg.wufjava.WufJavaApplication.run(WufJavaApplication.java:57) ~[classes/:na]
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:771) ~[spring-boot-2.7.0.jar:2.7.0]
 	... 8 common frames omitted
@@ -175,3 +175,95 @@ Caused by: java.util.InputMismatchException: null
 2022-06-04 09:42:27.431  INFO 33132 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2022-06-04 09:42:27.458  INFO 33132 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2022-06-04 09:42:27.466  INFO 33132 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Started WufJavaApplication in 20.433 seconds (JVM running for 20.97)
+2022-06-04 10:00:32.942  INFO 33132 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-04 10:00:33.397  INFO 33132 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-06-04 10:00:34.668  INFO 33132 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1270 ms
+2022-06-04 10:31:07.120  WARN 33132 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot invoke "String.split(String)" because the return value of "java.net.URI.getPath()" is null; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Cannot invoke "String.split(String)" because the return value of "java.net.URI.getPath()" is null (through reference chain: inc.cwg.wufjava.models.Nation["conf"])]
+2022-06-04 10:37:02.804  WARN 33132 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `inc.cwg.wufjava.models.Country` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('http://localhost:8080/nations/91'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `inc.cwg.wufjava.models.Country` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('http://localhost:8080/nations/91')<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 4, column: 15] (through reference chain: inc.cwg.wufjava.models.Stadium["country"])]
+2022-06-04 10:40:17.982  INFO 33132 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 10:40:21.338  INFO 33132 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-04 10:40:22.636  INFO 33132 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-06-04 10:44:16.718  INFO 33228 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Starting WufJavaApplication using Java 18.0.1 on LAPTOP-KFNVAVQT with PID 33228 (C:\Users\valce\Downloads\wuf-java\target\classes started by valce in C:\Users\valce\Downloads\wuf-java)
+2022-06-04 10:44:16.718  INFO 33228 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-06-04 10:44:16.751  INFO 33228 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-04 10:44:16.751  INFO 33228 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-04 10:44:17.689  INFO 33228 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-04 10:44:17.770  INFO 33228 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 74 ms. Found 13 JPA repository interfaces.
+2022-06-04 10:44:19.524  INFO 33228 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-06-04 10:44:19.530  INFO 33228 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-06-04 10:44:19.530  INFO 33228 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-06-04 10:44:19.585  INFO 33228 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-06-04 10:44:19.585  INFO 33228 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2834 ms
+2022-06-04 10:44:19.729  INFO 33228 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-04 10:44:19.763  INFO 33228 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-06-04 10:44:20.670  INFO 33228 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-04 10:44:21.378  INFO 33228 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-06-04 10:44:57.664  INFO 33228 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-06-04 10:44:57.676  INFO 33228 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-06-04 10:45:18.605  INFO 33228 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-04 10:45:18.611  INFO 33228 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 10:45:20.570  WARN 33228 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-04 10:45:25.725  INFO 33228 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-06-04 10:45:28.570  INFO 33228 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-04 10:45:28.579  INFO 33228 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Started WufJavaApplication in 72.337 seconds (JVM running for 77.27)
+2022-06-04 10:51:06.658  INFO 33228 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-04 10:51:06.658  INFO 33228 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-06-04 10:51:06.659  INFO 33228 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-06-04 10:59:33.739  INFO 33228 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 10:59:33.743  INFO 33228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-04 10:59:33.750  INFO 33228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-06-04 11:02:56.742  INFO 20180 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Starting WufJavaApplication using Java 18.0.1 on LAPTOP-KFNVAVQT with PID 20180 (C:\Users\valce\Downloads\wuf-java\target\classes started by valce in C:\Users\valce\Downloads\wuf-java)
+2022-06-04 11:02:56.743  INFO 20180 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-06-04 11:02:56.881  INFO 20180 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-04 11:02:56.881  INFO 20180 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-04 11:02:57.904  INFO 20180 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-04 11:02:58.093  INFO 20180 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 183 ms. Found 13 JPA repository interfaces.
+2022-06-04 11:02:58.522  INFO 20180 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-06-04 11:02:58.528  INFO 20180 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-06-04 11:02:58.528  INFO 20180 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-06-04 11:02:58.583  INFO 20180 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-06-04 11:02:58.584  INFO 20180 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1702 ms
+2022-06-04 11:02:58.727  INFO 20180 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-04 11:02:58.761  INFO 20180 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-06-04 11:02:58.864  INFO 20180 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-04 11:02:58.920  INFO 20180 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-06-04 11:03:01.037  INFO 20180 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-06-04 11:03:01.046  INFO 20180 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-06-04 11:03:47.301  INFO 20180 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-04 11:03:47.306  INFO 20180 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 11:03:47.860  WARN 20180 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-04 11:03:48.463  INFO 20180 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-06-04 11:03:48.494  INFO 20180 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-04 11:03:48.503  INFO 20180 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Started WufJavaApplication in 52.076 seconds (JVM running for 54.813)
+2022-06-04 11:06:43.531  INFO 20180 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-04 11:06:43.531  INFO 20180 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-06-04 11:06:43.532  INFO 20180 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-06-04 11:44:28.902  INFO 20180 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 11:44:29.191  INFO 20180 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-04 11:44:29.194  INFO 20180 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-06-04 11:44:40.704  INFO 30320 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Starting WufJavaApplication using Java 18.0.1 on LAPTOP-KFNVAVQT with PID 30320 (C:\Users\valce\Downloads\wuf-java\target\classes started by valce in C:\Users\valce\Downloads\wuf-java)
+2022-06-04 11:44:40.704  INFO 30320 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-06-04 11:44:40.745  INFO 30320 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-04 11:44:40.745  INFO 30320 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-04 11:44:41.231  INFO 30320 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-04 11:44:41.306  INFO 30320 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 13 JPA repository interfaces.
+2022-06-04 11:44:41.802  INFO 30320 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-06-04 11:44:41.808  INFO 30320 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-06-04 11:44:41.809  INFO 30320 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-06-04 11:44:41.862  INFO 30320 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-06-04 11:44:41.862  INFO 30320 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1116 ms
+2022-06-04 11:44:42.016  INFO 30320 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-04 11:44:42.051  INFO 30320 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-06-04 11:44:42.144  INFO 30320 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-04 11:44:42.199  INFO 30320 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-06-04 11:44:42.484  INFO 30320 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-06-04 11:44:42.494  INFO 30320 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-06-04 11:44:44.946  INFO 30320 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-04 11:44:44.952  INFO 30320 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 11:44:45.478  WARN 30320 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-04 11:44:46.028  INFO 30320 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-06-04 11:44:46.055  INFO 30320 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-04 11:44:46.063  INFO 30320 --- [restartedMain] inc.cwg.wufjava.WufJavaApplication       : Started WufJavaApplication in 5.62 seconds (JVM running for 6.648)
+2022-06-04 11:46:38.656  INFO 30320 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-04 11:46:38.659  INFO 30320 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-04 11:46:38.663  INFO 30320 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

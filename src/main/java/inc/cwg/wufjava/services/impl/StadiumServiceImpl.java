@@ -2,6 +2,7 @@ package inc.cwg.wufjava.services.impl;
 
 import inc.cwg.wufjava.dao.StadiumDao;
 import inc.cwg.wufjava.models.Country;
+import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.models.Stadium;
 import inc.cwg.wufjava.models.WufBoard;
 import inc.cwg.wufjava.services.StadiumService;
@@ -18,7 +19,7 @@ public class StadiumServiceImpl implements StadiumService {
     }
 
     @Override
-    public Stadium addStadium(String name, String city, Country country) {
+    public Stadium addStadium(String name, String city, Nation country) {
         return stadiumDao.save(new Stadium(name,city,country));
     }
 

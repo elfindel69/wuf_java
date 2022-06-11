@@ -3,7 +3,7 @@ package inc.cwg.wufjava;
 import inc.cwg.wufjava.cli.CliConf;
 import inc.cwg.wufjava.cli.CliMenu;
 import inc.cwg.wufjava.cli.CliNation;
-import inc.cwg.wufjava.controllers.ContMenu;
+import inc.cwg.wufjava.controllers.MenuController;
 import inc.cwg.wufjava.controllers.NationController;
 import inc.cwg.wufjava.controllers.RankingController;
 import inc.cwg.wufjava.models.Conf;
@@ -23,13 +23,13 @@ import java.util.Scanner;
 public class WufJavaApplication implements CommandLineRunner {
 
 	private final WufBoardService wufBoardService;
-	private final ContMenu contMenu;
+	private final MenuController contMenu;
 	private final NationController nationController;
 	private final RankingController rankingController;
 	private final ConfService confService;
 	private final NationService nationService;
 
-	public WufJavaApplication(WufBoardService wufBoardService, ContMenu contMenu, NationController nationController,
+	public WufJavaApplication(WufBoardService wufBoardService, MenuController contMenu, NationController nationController,
 							  RankingController rankingController, ConfService confService, NationService nationService) {
 		this.wufBoardService = wufBoardService;
 		this.contMenu = contMenu;

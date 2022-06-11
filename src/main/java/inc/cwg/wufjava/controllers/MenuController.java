@@ -9,7 +9,7 @@ import inc.cwg.wufjava.models.Score;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ContMenu {
+public class MenuController {
     public  void execScores()
     {
         System.out.println("Scores !");
@@ -18,7 +18,7 @@ public class ContMenu {
         System.out.println("Pays 2:");
 
         Country ct2 = CliCountry.NewCountry(false);
-        Score scores = CalcScore.doCalcScores(ct1.getPts(), ct2.getPts());
+        Score scores = CalcScoreController.doCalcScores(ct1.getPts(), ct2.getPts());
         ct1.setScore(scores.getScoreHome());
         ct2.setScore(scores.getScoreAway());
         CliScores.doViewScores(ct1, ct2);
@@ -34,7 +34,7 @@ public class ContMenu {
         Country ct2 = CliCountry.NewCountry(true);
         int coeff = CliPoints.getCoeff();
         int diff = ct1.getScore() - ct2.getScore();
-        Points points = CalcPoints.doCalcPoints(ct1.getPts(), ct2.getPts(), coeff, diff);
+        Points points = CalcPointsController.doCalcPoints(ct1.getPts(), ct2.getPts(), coeff, diff);
         ct1.setPts(points.getPointsHome());
         ct2.setPts(points.getPointsAway());
         CliPoints.doViewPoints(ct1, ct2);

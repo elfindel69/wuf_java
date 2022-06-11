@@ -4,7 +4,7 @@ import inc.cwg.wufjava.models.Points;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class CalcPoints {
+public class CalcPointsController {
     public static Points doCalcPoints(double pts1, double pts2, int coeff, int diff)
     {
         double newPts1 = 0;

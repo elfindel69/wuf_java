@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import java.util.Random;
 
 @Controller
-public class CalcScore {
+public class CalcScoreController {
     public static Score doCalcScores(double pts1, double pts2)
     {
         int score1;
