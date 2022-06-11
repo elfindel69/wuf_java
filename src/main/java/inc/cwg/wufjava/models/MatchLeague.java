@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 public class MatchLeague extends Match{
     @ManyToOne
     @JoinColumn(name = "league_id")
+    @JsonIgnore
     private League league;
 
     public League getLeague() {

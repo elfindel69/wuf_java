@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,10 +15,12 @@ public class Match {
 
     @ManyToOne
     @JoinColumn(name = "home_nation_id")
+    @JsonIgnore
     private Nation homeNation;
 
     @ManyToOne
     @JoinColumn(name = "away_nation_id")
+    @JsonIgnore
     private Nation awayNation;
 
     @Column(name="sc_home")

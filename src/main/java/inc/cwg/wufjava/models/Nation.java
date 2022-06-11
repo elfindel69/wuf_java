@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ public class Nation extends Country{
 
     @ManyToOne
     @JoinColumn(name = "conf_id")
+    @JsonIgnore
     private Conf conf;
 
     private String admissionYear;
@@ -27,12 +30,14 @@ public class Nation extends Country{
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "last_world_cup_id")
+    @JsonIgnore
     private Cup lastWorldCup;
 
     private String bestWCResult;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "best_world_cup_id")
+    @JsonIgnore
     private Cup bestWorldCup;
 
     private int confCupParticipations;
@@ -41,24 +46,28 @@ public class Nation extends Country{
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "last_conf_cup_id")
+    @JsonIgnore
     private Cup lastConfCup;
 
     private String bestCCResult;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "best_conf_cup_id")
+    @JsonIgnore
     private Cup bestConfCup;
 
     private String lastCLResult;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "last_conf_league_id")
+    @JsonIgnore
     private ConfLeague lastConfLeague;
 
     private String bestCLResult;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "best_conf_league_id")
+    @JsonIgnore
     private ConfLeague bestConfLeague;
 
     @OneToMany(mappedBy = "homeNation", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -71,6 +80,7 @@ public class Nation extends Country{
 
     @ManyToOne
     @JoinColumn(name = "wuf_board_id")
+    @JsonIgnore
     private WufBoard wufBoard;
 
     public WufBoard getWufBoard() {

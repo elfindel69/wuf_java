@@ -18,31 +18,7 @@ public class NationController {
         this.matchService = matchService;
     }
 
-    public void viewNation(Nation nation){
-        CliNation.doViewNation(nation);
-        if(nation.getLastWorldCup() != null){
-            CliCup.DoViewCup(nation.getLastWorldCup().getName(),nation.getWorldCupParticipations(),
-                    nation.getBestWCResult(),nation.getBestWorldCup().getEdition() );
-        }
-       if(nation.getLastConfCup() != null){
-           CliCup.DoViewCup(nation.getLastConfCup().getName(),nation.getConfCupParticipations(),
-                   nation.getBestCCResult(),nation.getBestConfCup().getEdition() );
-       }
-        if(!nation.getMatchesHome().isEmpty() || !nation.getMatchesAway().isEmpty()){
-            char[] results = getLastFiveResults(nation);
 
-            for (char result : results) {
-                System.out.print(result);
-            }
-            System.out.print("\n\n");
-            List<Match> matches = getMatches(nation);
-            for (Match m:
-                    matches) {
-                CliMatch.doViewMatches(m);
-            }
-        }
-
-}
 
     private char[] getLastFiveResults(Nation nation) {
         List<Match> matches = getMatches(nation);

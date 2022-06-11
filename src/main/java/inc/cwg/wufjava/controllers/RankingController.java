@@ -26,11 +26,5 @@ public class RankingController {
         return nations;
     }
 
-    public  void viewRanking(List<Nation> list)
-    {
-        for(int i = 0; i < list.size(); i++)
-        {
-            System.out.println(i + 1 + " - " + list.get(i).getName() + " - " + list.get(i).getPts());
-        }
-    }
+
 }

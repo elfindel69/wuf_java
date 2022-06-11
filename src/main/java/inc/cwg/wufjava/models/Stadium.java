@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class Stadium {
 
     @OneToOne
     @JoinColumn(name = "country_id")
+    @JsonIgnore
     private Nation country;
 
     public Nation getCountry() {
