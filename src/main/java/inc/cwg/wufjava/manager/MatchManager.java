@@ -2,8 +2,8 @@ package inc.cwg.wufjava.manager;
 
 import org.springframework.stereotype.Component;
 
+import inc.cwg.wufjava.holders.CalcPoints;
 import inc.cwg.wufjava.holders.CreateMatchHolder;
-import inc.cwg.wufjava.models.CalcPoints;
 import inc.cwg.wufjava.models.Match;
 import inc.cwg.wufjava.models.MatchCup;
 import inc.cwg.wufjava.models.MatchLeague;

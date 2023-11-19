@@ -1,9 +1,12 @@
 package inc.cwg.wufjava.controllers;
 
 import inc.cwg.wufjava.dto.CreateMatchDto;
+import inc.cwg.wufjava.dto.CreateMatchReturnDto;
 import inc.cwg.wufjava.enums.MatchType;
+import inc.cwg.wufjava.holders.CalcPoints;
 import inc.cwg.wufjava.holders.CreateMatchHolder;
 import inc.cwg.wufjava.manager.CalcPointsManager;
+import inc.cwg.wufjava.manager.CalcScoreManager;
 import inc.cwg.wufjava.manager.CupManager;
 import inc.cwg.wufjava.manager.LeagueManager;
 import inc.cwg.wufjava.manager.MatchManager;
@@ -30,8 +33,8 @@ public class WufJavaRestController {
     private final RankingController rankingController;
     private final WufBoardService wufService;
     private final ConfService confService;
-    private CupManager cupManager;
-    private LeagueManager leagueManager;
+    private final CupManager cupManager;
+    private final LeagueManager leagueManager;
 
 
  
@@ -44,11 +47,11 @@ public class WufJavaRestController {
 
     @PostMapping("/api/doCalcScores")
     Score doCalcScores(@RequestBody Points points) {
-        return CalcScoreController.doCalcScores(points.getPointsHome(),points.getPointsAway());
+        return CalcScoreManager.doCalcScores(points.getPointsHome(),points.getPointsAway());
     }
 
     @PostMapping("api/doCreateMatch")
-    CreateMatchDto doCreateMatch(@RequestBody CreateMatchDto createMatchDto){
+    CreateMatchReturnDto doCreateMatch(@RequestBody CreateMatchDto createMatchDto){
 
 
         
@@ -56,7 +59,9 @@ public class WufJavaRestController {
         Nation away = nationManager.fetchNation(createMatchDto.getAwayNation());
         Stadium stadium = stadiumManager.fetchStadium(createMatchDto.getStadium());
 
-        CalcPoints calcPoints = new CalcPoints(createMatchDto.getHomePoints(),createMatchDto.getAwayPoints(),createMatchDto.getCoeff(),createMatchDto.getHomeScore(),createMatchDto.getAwayScore());
+        Score score = CalcScoreManager.doCalcScores(home.getPts(),away.getPts());
+
+        CalcPoints calcPoints = new CalcPoints(home.getPts(),away.getPts(),createMatchDto.getCoeff(),score.getScoreHome(),score.getScoreAway());
         MatchType matchType = MatchType.getMatchType(createMatchDto.getType());
         Cup cup = null;
         League league = null;
@@ -82,7 +87,7 @@ public class WufJavaRestController {
 
        createMatchHolder = matchManager.doCreateMatch(createMatchHolder);
 
-       return new CreateMatchDto(createMatchHolder);
+       return new CreateMatchReturnDto(createMatchHolder);
     }
 
     @GetMapping("/wufBoard/{id}/ranking")
