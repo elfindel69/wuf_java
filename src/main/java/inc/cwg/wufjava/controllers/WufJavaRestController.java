@@ -50,7 +50,7 @@ public class WufJavaRestController {
         return CalcScoreManager.doCalcScores(points.getPointsHome(),points.getPointsAway());
     }
 
-    @PostMapping("api/doCreateMatch")
+    @PostMapping("/api/doCreateMatch")
     CreateMatchReturnDto doCreateMatch(@RequestBody CreateMatchDto createMatchDto){
 
 
