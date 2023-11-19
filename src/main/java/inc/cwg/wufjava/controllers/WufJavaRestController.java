@@ -62,7 +62,7 @@ public class WufJavaRestController {
         Score score = CalcScoreManager.doCalcScores(home.getPts(),away.getPts());
 
         CalcPoints calcPoints = new CalcPoints(home.getPts(),away.getPts(),createMatchDto.getCoeff(),score.getScoreHome(),score.getScoreAway());
-        MatchType matchType = MatchType.getMatchType(createMatchDto.getType());
+
         Cup cup = null;
         League league = null;
         if (createMatchDto.getCup() != null){
@@ -77,7 +77,6 @@ public class WufJavaRestController {
                 .awayNation(away)
                 .stadium(stadium)
                 .calcPoints(calcPoints)
-                .matchType(matchType)
                 .date(createMatchDto.getDate())
                 .timeZone(createMatchDto.getTimeZone())
                 .cup(cup)
