@@ -16,7 +16,6 @@ public class CreateMatchDto {
     private int coeff;
 
     private String stadium;
-    private String type;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime date;
