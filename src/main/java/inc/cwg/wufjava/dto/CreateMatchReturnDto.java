@@ -20,8 +20,8 @@ public class CreateMatchReturnDto {
     private LocalDateTime date;
     private String timeZone;
 
-    String cup;
-    String league;
+    private String cup = "";
+    private String league = "";
 
     public CreateMatchReturnDto(CreateMatchHolder createMatchHolder) {
         homeNation = createMatchHolder.getHomeNation().getName();
@@ -34,8 +34,12 @@ public class CreateMatchReturnDto {
         stadium = createMatchHolder.getStadium().getName();
         date = createMatchHolder.getDate();
         timeZone = createMatchHolder.getTimeZone();
-        cup = createMatchHolder.getCup().getName();
-        league = createMatchHolder.getLeague().getName();
+        if(createMatchHolder.getCup() != null) {
+            cup = createMatchHolder.getCup().getName();
+        }
+        if(createMatchHolder.getLeague() != null){
+            league = createMatchHolder.getLeague().getName();
+        }
     }
     
 }
