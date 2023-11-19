@@ -1,7 +1,6 @@
 package inc.cwg.wufjava.services.impl;
 
 import inc.cwg.wufjava.dao.LeagueDao;
-import inc.cwg.wufjava.models.ConfLeague;
 import inc.cwg.wufjava.models.League;
 import inc.cwg.wufjava.services.LeagueService;
 import org.springframework.stereotype.Service;
@@ -29,6 +28,12 @@ public class LeagueServiceImpl implements LeagueService {
     @Override
     public League fetchLeague(long id) {
         return leagueDao.findById(id).orElse(null);
+    }
+
+
+    @Override
+    public League fetchLeague(String name) {
+        return leagueDao.findFirstByName(name);
     }
 
     @Override

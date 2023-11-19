@@ -4,7 +4,6 @@ package inc.cwg.wufjava.services;
 import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.ConfLeague;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ConfLeagueService {

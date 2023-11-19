@@ -1,7 +1,6 @@
 package inc.cwg.wufjava.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 
 @Entity

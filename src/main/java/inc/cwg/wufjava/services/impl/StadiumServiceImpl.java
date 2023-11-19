@@ -1,10 +1,8 @@
 package inc.cwg.wufjava.services.impl;
 
 import inc.cwg.wufjava.dao.StadiumDao;
-import inc.cwg.wufjava.models.Country;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.models.Stadium;
-import inc.cwg.wufjava.models.WufBoard;
 import inc.cwg.wufjava.services.StadiumService;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +45,10 @@ public class StadiumServiceImpl implements StadiumService {
             stadiumDao.deleteById(id);
             return fetchStadium(id) == null;
         }
+    }
+
+    @Override
+    public Stadium fetchStadium(String name) {
+      return stadiumDao.findFirstByName(name);
     }
 }

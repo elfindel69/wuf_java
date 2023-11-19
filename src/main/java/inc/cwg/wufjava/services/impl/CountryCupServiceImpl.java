@@ -1,10 +1,8 @@
 package inc.cwg.wufjava.services.impl;
 
 import inc.cwg.wufjava.dao.CountryCupDao;
-import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.CountryCup;
 import inc.cwg.wufjava.models.Cup;
-import inc.cwg.wufjava.models.MatchCup;
 import inc.cwg.wufjava.services.CountryCupService;
 import org.springframework.stereotype.Service;
 

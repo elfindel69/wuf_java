@@ -1,8 +1,6 @@
 package inc.cwg.wufjava.services;
 
-import inc.cwg.wufjava.models.CountryCup;
 import inc.cwg.wufjava.models.CountryLeague;
-import inc.cwg.wufjava.models.Cup;
 import inc.cwg.wufjava.models.League;
 
 import java.util.List;

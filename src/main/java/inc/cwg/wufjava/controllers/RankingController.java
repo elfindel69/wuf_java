@@ -3,8 +3,6 @@ package inc.cwg.wufjava.controllers;
 import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.models.WufBoard;
-import inc.cwg.wufjava.services.ConfService;
-import inc.cwg.wufjava.services.WufBoardService;
 import org.springframework.stereotype.Controller;
 
 import java.util.Comparator;

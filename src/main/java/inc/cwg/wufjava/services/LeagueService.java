@@ -12,6 +12,8 @@ public interface LeagueService {
 
     League fetchLeague(long id);
 
+    League fetchLeague(String name);
+
     League saveLeague(League c);
 
     boolean deleteLeague(long id);

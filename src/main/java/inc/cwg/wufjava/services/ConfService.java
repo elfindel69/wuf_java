@@ -4,7 +4,6 @@ import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.models.WufBoard;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ConfService {

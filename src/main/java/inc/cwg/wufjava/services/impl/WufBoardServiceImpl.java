@@ -6,7 +6,6 @@ import inc.cwg.wufjava.models.WufBoard;
 import inc.cwg.wufjava.services.WufBoardService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service

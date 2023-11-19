@@ -1,6 +1,7 @@
 package inc.cwg.wufjava.controllers;
 
 import inc.cwg.wufjava.models.*;
+import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.services.*;
 import org.springframework.stereotype.Controller;
 
@@ -185,18 +186,15 @@ public class DataController {
             italy.setBestCLResult("3eme");
 
             italy = nationService.saveNation(italy);
-
-            LocalDateTime localDateTime1 = LocalDateTime.parse("2021-10-23T21:00:00");
             Nation wales = new Nation("Pays de Galles",1567.2,0,europe,"2018",null,
                     4,2,"Europe/London",wuf);
             wales = nationService.saveNation(wales);
             Stadium millenium = stadiumService.addStadium("Millenium Stadium","Cardiff",wales);
            wales.setMainStadium(millenium);
             nationService.saveNation(wales);
-            italy.getMatchesHome().add(matchCupService.addMatchCup(italy,wales,9, 16, locDate1, "Europe/Rome",olympico,qualifsEu2023));
 
-            LocalDateTime localDateTime2= LocalDateTime.parse("2021-10-16T21:00:00");
-            italy.getMatchesAway().add(matchCupService.addMatchCup(croatia,italy,14, 16, locDate2, "Europe/Zagreb",maksimir,qualifsEu2023));
+            italy.getMatchesHome().add(matchCupService.addMatchCup(italy,wales,9, 16, locDate1, "Europe/Rome",olympico,qualifsEu2023));
+         italy.getMatchesAway().add(matchCupService.addMatchCup(croatia,italy,14, 16, locDate2, "Europe/Zagreb",maksimir,qualifsEu2023));
 
             Nation russia = new Nation("Russie",1117.13,0,europe,"2018",null,
                     36,15,"Europe/Moscow",wuf);
@@ -204,10 +202,9 @@ public class DataController {
             Stadium luzhniki = stadiumService.addStadium("Luzhniki Stadium","Moscow",russia);
             russia.setMainStadium(luzhniki);
             nationService.saveNation(russia);
-            LocalDateTime localDateTime3= LocalDateTime.parse("2021-09-18T21:00:00");
+           
             italy.getMatchesHome().add(matchCupService.addMatchCup(italy,russia,16, 14, locDate3, "Europe/Rome",olympico,qualifsEu2023));
 
-            LocalDateTime localDateTime4 = LocalDateTime.parse("2021-09-11T21:00:00");
             italy.getMatchesAway().add(matchCupService.addMatchCup(germany,italy,14, 16, locDate4, "Europe/Berlin",olympia,qualifsEu2023));
 
             Nation switzerland = new Nation("Suisse",1127.61,0,europe,"2018",null,
@@ -216,7 +213,7 @@ public class DataController {
             Stadium wankdorf = stadiumService.addStadium("Wankdorf Stadium","Berne",switzerland);
             switzerland.setMainStadium(wankdorf);
             nationService.saveNation(switzerland);
-            LocalDateTime localDateTime5= LocalDateTime.parse("2021-08-21T21:00:00");
+          
             italy.getMatchesAway().add(matchCupService.addMatchCup(switzerland,italy,23, 13, locDate5, "Europe/Zurich",wankdorf,qualifsEu2023));
 
             europe.getNations().add(italy);
