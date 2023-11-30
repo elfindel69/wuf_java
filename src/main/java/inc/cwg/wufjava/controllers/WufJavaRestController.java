@@ -68,7 +68,8 @@ public class WufJavaRestController {
         if (createMatchDto.getCup() != null){
             cup = cupManager.fetchCup(createMatchDto.getCup());
            
-        } else {
+        }
+        if (createMatchDto.getLeague() != null){
             league = leagueManager.fetchLeague(createMatchDto.getLeague());
         }
 
