@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MatchLeagueService {
     MatchLeague addMatchLeague(Nation homeNation, Nation awayNation, int scHome, int scAway,
-                            LocalDateTime matchTime, String timeZone, Stadium venue, League cup);
+                            LocalDateTime matchTime, String timeZone, Stadium venue, League league);
 
     List<MatchLeague> fetchMatchesLeague();
 
