@@ -1,10 +1,8 @@
 package inc.cwg.wufjava.services;
 
 import inc.cwg.wufjava.models.Nation;
-import inc.cwg.wufjava.models.WorldCup;
 import inc.cwg.wufjava.models.WufBoard;
 
-import java.time.LocalDate;
 import java.util.List;
 
 
