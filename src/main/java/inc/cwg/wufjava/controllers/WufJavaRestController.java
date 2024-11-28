@@ -19,6 +19,9 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -58,7 +61,15 @@ public class WufJavaRestController {
         Nation home = nationManager.fetchNation(createMatchDto.getHomeNation());
         Nation away = nationManager.fetchNation(createMatchDto.getAwayNation());
         Stadium stadium = stadiumManager.fetchStadium(createMatchDto.getStadium());
-
+        if (home == null || away == null) {
+            throw new EntityNotFoundException("One or both nations not found.");
+        }
+        if (home.equals(away)) {
+            throw new IllegalArgumentException("Home and Away nations cannot be the same.");
+        }
+        if (stadium == null) {
+            throw new EntityNotFoundException("Stadium not found.");
+        }
         Score score = CalcScoreManager.doCalcScores(home.getPts(),away.getPts());
 
         CalcPoints calcPoints = new CalcPoints(home.getPts(),away.getPts(),createMatchDto.getCoeff(),score.getScoreHome(),score.getScoreAway());
@@ -73,12 +84,14 @@ public class WufJavaRestController {
             league = leagueManager.fetchLeague(createMatchDto.getLeague());
         }
 
+        ZonedDateTime matchDate = ZonedDateTime.of(createMatchDto.getDate(), ZoneId.of(createMatchDto.getTimeZone()));
+
         CreateMatchHolder createMatchHolder = CreateMatchHolder.builder()
                 .homeNation(home)
                 .awayNation(away)
                 .stadium(stadium)
                 .calcPoints(calcPoints)
-                .date(createMatchDto.getDate())
+                .date(matchDate.toLocalDateTime())
                 .timeZone(createMatchDto.getTimeZone())
                 .cup(cup)
                 .league(league)
