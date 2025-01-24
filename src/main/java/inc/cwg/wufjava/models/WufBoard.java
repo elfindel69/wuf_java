@@ -1,10 +1,15 @@
 package inc.cwg.wufjava.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 public class WufBoard extends Organization{
     @OneToMany(mappedBy = "wufBoard", orphanRemoval = true)
@@ -15,30 +20,6 @@ public class WufBoard extends Organization{
 
     @OneToMany(mappedBy = "wufBoard", orphanRemoval = true)
     private List<WorldCup> worldCups = new ArrayList<>();
-
-    public List<WorldCup> getWorldCups() {
-        return worldCups;
-    }
-
-    public void setWorldCups(List<WorldCup> worldCups) {
-        this.worldCups = worldCups;
-    }
-
-    public List<Nation> getNations() {
-        return nations;
-    }
-
-    public void setNations(List<Nation> nations) {
-        this.nations = nations;
-    }
-
-    public List<Conf> getConfs() {
-        return confs;
-    }
-
-    public void setConfs(List<Conf> confs) {
-        this.confs = confs;
-    }
 
     public WufBoard() {
     }

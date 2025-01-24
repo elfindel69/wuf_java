@@ -18,5 +18,7 @@ public interface MatchService {
 
     boolean deleteMatch(long id);
 
-    List<Match> getFiveLastMatches(Nation nation);
+    List<Match> fetchMatches(Nation nation);
+
+    List<Match> getLastFiveMatches(Nation nation);
 }

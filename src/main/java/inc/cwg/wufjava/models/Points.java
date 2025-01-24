@@ -1,25 +1,14 @@
 package inc.cwg.wufjava.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Points {
 
     private double pointsHome;
     private double pointsAway;
-
-    public double getPointsHome() {
-        return pointsHome;
-    }
-
-    public void setPointsHome(double pointsHome) {
-        this.pointsHome = pointsHome;
-    }
-
-    public double getPointsAway() {
-        return pointsAway;
-    }
-
-    public void setPointsAway(double pointsAway) {
-        this.pointsAway = pointsAway;
-    }
 
     public Points(double pointsHome, double pointsAway) {
         this.pointsHome = pointsHome;

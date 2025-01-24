@@ -15,21 +15,24 @@ import java.util.List;
 public class ConfController {
 
     private final ConfManager confManager;
-    ConfManager manager;
 
+    @GetMapping("/all")
+    public List<Conf> getAllConfs() {
+        return confManager.getConfs();
+    }
     @GetMapping("/{id}/nations")
     public List<Nation> getNations(@RequestAttribute("id") Long id) {
-        return manager.getNations(id);
+        return confManager.getNations(id);
     }
 
     @GetMapping("/{id}")
     public Conf getConf(@PathVariable Long id) {
-        return manager.getConf(id);
+        return confManager.getConf(id);
     }
 
     @PostMapping("/save")
     public Conf saveConf(@RequestBody Conf conf) {
-        return manager.save(conf);
+        return confManager.save(conf);
     }
 
     @PostMapping("/{id}/delete")

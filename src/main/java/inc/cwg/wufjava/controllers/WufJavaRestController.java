@@ -2,16 +2,9 @@ package inc.cwg.wufjava.controllers;
 
 import inc.cwg.wufjava.dto.CreateMatchDto;
 import inc.cwg.wufjava.dto.CreateMatchReturnDto;
-import inc.cwg.wufjava.enums.MatchType;
 import inc.cwg.wufjava.holders.CalcPoints;
 import inc.cwg.wufjava.holders.CreateMatchHolder;
-import inc.cwg.wufjava.manager.CalcPointsManager;
-import inc.cwg.wufjava.manager.CalcScoreManager;
-import inc.cwg.wufjava.manager.CupManager;
-import inc.cwg.wufjava.manager.LeagueManager;
-import inc.cwg.wufjava.manager.MatchManager;
-import inc.cwg.wufjava.manager.NationManager;
-import inc.cwg.wufjava.manager.StadiumManager;
+import inc.cwg.wufjava.manager.*;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.ConfService;
 import inc.cwg.wufjava.services.WufBoardService;
@@ -33,7 +26,7 @@ public class WufJavaRestController {
     private final NationManager nationManager;
     private final StadiumManager stadiumManager;
 
-    private final RankingController rankingController;
+    private final RankingManager rankingManager;
     private final WufBoardService wufService;
     private final ConfService confService;
     private final CupManager cupManager;
@@ -106,12 +99,12 @@ public class WufJavaRestController {
     @GetMapping("/wufBoard/{id}/ranking")
     List<Nation> getWorldRanking(@PathVariable Long id){
         WufBoard wufBoard = wufService.fetchWufBoard(id);
-        return rankingController.fetchWorldRanking(wufBoard);
+        return rankingManager.fetchWorldRanking(wufBoard);
     }
 
     @GetMapping("/conf/{id}/ranking")
     List<Nation> getConfRanking(@PathVariable Long id){
         Conf conf = confService.fetchConf(id);
-        return rankingController.fetchConfRanking(conf);
+        return rankingManager.fetchConfRanking(conf);
     }
 }

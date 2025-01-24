@@ -9,9 +9,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
 public interface MatchDao extends JpaRepository<Match,Long> {
     @Query(value = "select distinct m from matches m" +
             " where m.awayNation =:nation or m.homeNation =:nation")
-    List<Match> getFiveLastMatches(@Param("nation") Nation nation);
+    List<Match> getMatchesByNation(Nation nation);
 }

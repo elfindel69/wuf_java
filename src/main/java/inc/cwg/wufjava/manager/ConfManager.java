@@ -12,8 +12,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class ConfManager {
-    ConfService confService;
-    NationService nationService;
+    private final ConfService confService;
+    private final NationService nationService;
 
     public List<Nation> getNations(Long id) {
         Conf conf = confService.fetchConf(id);
@@ -30,5 +30,9 @@ public class ConfManager {
 
     public void delete(Long id) {
         confService.deleteConf(id);
+    }
+
+    public List<Conf> getConfs() {
+        return confService.fetchConfs();
     }
 }

@@ -18,10 +18,6 @@ public class MatchCup extends Match{
     @JsonIgnore
     private Cup cup;
 
-    public MatchCup() {
-        super();
-    }
-
     @Builder
     public MatchCup(Nation homeNation, Nation awayNation, int scHome, int scAway, LocalDateTime matchTime, String timeZone, Stadium venue, Cup cup) {
         super(homeNation, awayNation, scHome, scAway, matchTime, timeZone, venue);

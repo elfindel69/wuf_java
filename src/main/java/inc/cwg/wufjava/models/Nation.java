@@ -1,11 +1,15 @@
 package inc.cwg.wufjava.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 public class Nation extends Country{
 
@@ -83,192 +87,7 @@ public class Nation extends Country{
     @JsonIgnore
     private WufBoard wufBoard;
 
-    public WufBoard getWufBoard() {
-        return wufBoard;
-    }
 
-    public void setWufBoard(WufBoard wufBoard) {
-        this.wufBoard = wufBoard;
-    }
-
-    public String getAdmissionYear() {
-        return admissionYear;
-    }
-
-    public void setAdmissionYear(String admissionYear) {
-        this.admissionYear = admissionYear;
-    }
-
-    public Stadium getMainStadium() {
-        return mainStadium;
-    }
-
-    public void setMainStadium(Stadium stadium) {
-        this.mainStadium = stadium;
-    }
-
-    public int getWufRanking() {
-        return wufRanking;
-    }
-
-    public void setWufRanking(int wufRanking) {
-        this.wufRanking = wufRanking;
-    }
-
-    public int getConfRanking() {
-        return confRanking;
-    }
-
-    public void setConfRanking(int confRanking) {
-        this.confRanking = confRanking;
-    }
-
-    public int getWorldCupParticipations() {
-        return worldCupParticipations;
-    }
-
-    public void setWorldCupParticipations(int worldCupParticipations) {
-        this.worldCupParticipations = worldCupParticipations;
-    }
-
-    public String getLastWCResult() {
-        return lastWCResult;
-    }
-
-    public void setLastWCResult(String lastWCResult) {
-        this.lastWCResult = lastWCResult;
-    }
-
-    public String getBestWCResult() {
-        return bestWCResult;
-    }
-
-    public void setBestWCResult(String bestWCResult) {
-        this.bestWCResult = bestWCResult;
-    }
-
-    public Cup getBestWorldCup() {
-        return bestWorldCup;
-    }
-
-    public void setBestWorldCup(Cup bestWorldCup) {
-        this.bestWorldCup = bestWorldCup;
-    }
-
-    public int getConfCupParticipations() {
-        return confCupParticipations;
-    }
-
-    public void setConfCupParticipations(int confCupParticipations) {
-        this.confCupParticipations = confCupParticipations;
-    }
-
-    public String getLastCCResult() {
-        return lastCCResult;
-    }
-
-    public void setLastCCResult(String lastCCResult) {
-        this.lastCCResult = lastCCResult;
-    }
-
-    public Cup getLastConfCup() {
-        return lastConfCup;
-    }
-
-    public void setLastConfCup(Cup lastConfCup) {
-        this.lastConfCup = lastConfCup;
-    }
-
-    public String getBestCCResult() {
-        return bestCCResult;
-    }
-
-    public void setBestCCResult(String bestCCResult) {
-        this.bestCCResult = bestCCResult;
-    }
-
-    public Cup getBestConfCup() {
-        return bestConfCup;
-    }
-
-    public void setBestConfCup(Cup bestConfCup) {
-        this.bestConfCup = bestConfCup;
-    }
-
-    public String getLastCLResult() {
-        return lastCLResult;
-    }
-
-    public void setLastCLResult(String lastCLResult) {
-        this.lastCLResult = lastCLResult;
-    }
-
-    public String getBestCLResult() {
-        return bestCLResult;
-    }
-
-    public void setBestCLResult(String bestCLResult) {
-        this.bestCLResult = bestCLResult;
-    }
-
-    public ConfLeague getBestConfLeague() {
-        return bestConfLeague;
-    }
-
-    public void setBestConfLeague(ConfLeague bestConfLeague) {
-        this.bestConfLeague = bestConfLeague;
-    }
-
-    public String getTimeZone() {
-        return timeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
-    }
-
-    public List<Match> getMatchesAway() {
-        return matchesAway;
-    }
-
-    public void setMatchesAway(List<Match> matchesAway) {
-        this.matchesAway = matchesAway;
-    }
-
-    public List<Match> getMatchesHome() {
-        return matchesHome;
-    }
-
-    public void setMatchesHome(List<Match> matchesHome) {
-        this.matchesHome = matchesHome;
-    }
-
-    public ConfLeague getLastConfLeague() {
-        return lastConfLeague;
-    }
-
-    public void setLastConfLeague(ConfLeague lastConfLeague) {
-        this.lastConfLeague = lastConfLeague;
-    }
-
-    public Cup getLastWorldCup() {
-        return lastWorldCup;
-    }
-
-    public void setLastWorldCup(Cup lastWorldCup) {
-        this.lastWorldCup = lastWorldCup;
-    }
-
-    public Conf getConf() {
-        return conf;
-    }
-
-    public void setConf(Conf conf) {
-        this.conf = conf;
-    }
-
-    public Nation() {
-    }
 
     public Nation(String name, double pts, int score, Conf conf, String admissionYear, Stadium stadium,
                   int wufRanking, int confRanking, String timeZone, WufBoard board) {
@@ -280,6 +99,10 @@ public class Nation extends Country{
         this.confRanking = confRanking;
         this.timeZone = timeZone;
         this.wufBoard = board;
+    }
+
+    public Nation() {
+
     }
 
     @Override

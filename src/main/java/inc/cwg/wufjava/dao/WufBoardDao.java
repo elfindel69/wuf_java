@@ -8,7 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
 public interface WufBoardDao extends JpaRepository<WufBoard,Long> {
     @Query("select w.nations from WufBoard w join Nation n group by n order by n.pts desc ")
     List<Nation> findAllNationsOrderByPtsDesc();

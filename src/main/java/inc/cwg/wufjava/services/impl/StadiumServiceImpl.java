@@ -51,4 +51,9 @@ public class StadiumServiceImpl implements StadiumService {
     public Stadium fetchStadium(String name) {
       return stadiumDao.findFirstByName(name);
     }
+
+    @Override
+    public List<Stadium> fetchStadiums(Nation nation) {
+        return stadiumDao.getAllByCountry(nation);
+    }
 }

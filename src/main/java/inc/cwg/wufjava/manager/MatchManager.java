@@ -9,6 +9,9 @@ import inc.cwg.wufjava.holders.CreateMatchHolder;
 import inc.cwg.wufjava.services.MatchService;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class MatchManager {
@@ -18,35 +21,35 @@ public class MatchManager {
 
     public CreateMatchHolder doCreateMatch(CreateMatchHolder createMatchHolder) {
 
-        Match match =  new Match(createMatchHolder.getHomeNation(),
-            createMatchHolder.getAwayNation(),
-            createMatchHolder.getCalcPoints().getSc1(),
-            createMatchHolder.getCalcPoints().getSc2(),
-            createMatchHolder.getDate(),
-            createMatchHolder.getTimeZone(),
-            createMatchHolder.getStadium()
-            );
+        Match match = new Match(createMatchHolder.getHomeNation(),
+                createMatchHolder.getAwayNation(),
+                createMatchHolder.getCalcPoints().getSc1(),
+                createMatchHolder.getCalcPoints().getSc2(),
+                createMatchHolder.getDate(),
+                createMatchHolder.getTimeZone(),
+                createMatchHolder.getStadium()
+        );
 
-        if (createMatchHolder.getCup() != null){
+        if (createMatchHolder.getCup() != null) {
             match = new MatchCup(createMatchHolder.getHomeNation(),
-            createMatchHolder.getAwayNation(),
-            createMatchHolder.getCalcPoints().getSc1(),
-            createMatchHolder.getCalcPoints().getSc2(),
-            createMatchHolder.getDate(),
-            createMatchHolder.getTimeZone(),
-            createMatchHolder.getStadium(),
-            createMatchHolder.getCup()
+                    createMatchHolder.getAwayNation(),
+                    createMatchHolder.getCalcPoints().getSc1(),
+                    createMatchHolder.getCalcPoints().getSc2(),
+                    createMatchHolder.getDate(),
+                    createMatchHolder.getTimeZone(),
+                    createMatchHolder.getStadium(),
+                    createMatchHolder.getCup()
             );
         }
-        if (createMatchHolder.getLeague() != null){
+        if (createMatchHolder.getLeague() != null) {
             match = new MatchLeague(createMatchHolder.getHomeNation(),
-            createMatchHolder.getAwayNation(),
-            createMatchHolder.getCalcPoints().getSc1(),
-            createMatchHolder.getCalcPoints().getSc2(),
-            createMatchHolder.getDate(),
-            createMatchHolder.getTimeZone(),
-            createMatchHolder.getStadium(),
-            createMatchHolder.getLeague()
+                    createMatchHolder.getAwayNation(),
+                    createMatchHolder.getCalcPoints().getSc1(),
+                    createMatchHolder.getCalcPoints().getSc2(),
+                    createMatchHolder.getDate(),
+                    createMatchHolder.getTimeZone(),
+                    createMatchHolder.getStadium(),
+                    createMatchHolder.getLeague()
             );
         }
 
@@ -70,4 +73,27 @@ public class MatchManager {
         createMatchHolder.setCalcPoints(calcPoints);
         return createMatchHolder;
     }
+
+    public Match getMatch(Long id) {
+        return matchService.fetchMatch(id);
+    }
+
+    public List<Match> getMatchesByNation(Long id) {
+        Nation nation = nationService.fetchNation(id);
+        return matchService.fetchMatches(nation);
+    }
+
+    public List<Match> getLastFiveMatches(Long id) {
+        Nation nation = nationService.fetchNation(id);
+        return matchService.getLastFiveMatches(nation);
+    }
+
+    public Match saveMatch(Match match) {
+        return matchService.saveMatch(match);
+    }
+
+    public void delete(Long id) {
+        matchService.deleteMatch(id);
+    }
 }
+

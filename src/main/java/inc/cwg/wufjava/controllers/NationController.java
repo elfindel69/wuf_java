@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/nations")
 
 public class NationController {
-    NationManager nationManager;
+    private final NationManager nationManager;
 
+    @GetMapping("/")
+    public List<Nation> getNations() {
+        return nationManager.getNations();
+    }
 
     @GetMapping("/{id}")
     public Nation getNation(@PathVariable Long id) {
@@ -29,7 +33,7 @@ public class NationController {
     }
 
     @GetMapping("/{id}/lastMatches")
-    public List<Match> getLastMatches(@RequestAttribute("id") Long id) {
+    public List<Match> getLastFiveMatches(@RequestAttribute("id") Long id) {
         return nationManager.getMatches(id);
     }
 

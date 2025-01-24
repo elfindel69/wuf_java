@@ -17,4 +17,6 @@ public interface StadiumService {
     boolean deleteStadium(long id);
 
     Stadium fetchStadium(String name);
+
+    List<Stadium> fetchStadiums(Nation nation);
 }

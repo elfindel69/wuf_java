@@ -1,11 +1,17 @@
 package inc.cwg.wufjava.models;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@Setter
+@Getter
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Organization {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -19,37 +25,7 @@ public abstract class Organization {
 
     protected String dof;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAdjective() {
-        return adjective;
-    }
-
-    public void setAdjective(String adjective) {
-        this.adjective = adjective;
-    }
-
-    public String getDof() {
-        return dof;
-    }
-
-    public void setDof(String dof) {
-        this.dof = dof;
-    }
 
     public Organization() {
     }

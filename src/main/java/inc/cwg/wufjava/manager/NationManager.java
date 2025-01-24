@@ -25,8 +25,8 @@ public class NationManager {
     }
 
     public List<Match> getMatches(Long id) {
-        Nation nation = fetchNation(id);
-        return matchService.getFiveLastMatches(nation);
+        Nation nation = nationService.fetchNation(id);
+        return matchService.fetchMatches(nation);
     }
 
     public Nation saveNation(Nation nation) {
@@ -35,5 +35,9 @@ public class NationManager {
 
     public void deleteNation(Long id) {
         nationService.deleteNation(id);
+    }
+
+    public List<Nation> getNations() {
+       return nationService.fetchNations();
     }
 }

@@ -1,9 +1,14 @@
 package inc.cwg.wufjava.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Setter
+@Getter
 @Entity
 public class CountryCup extends Country{
 
@@ -11,15 +16,6 @@ public class CountryCup extends Country{
     @JoinColumn(name = "cup_id")
     private Cup cup;
 
-
-
-    public Cup getCup() {
-        return cup;
-    }
-
-    public void setCup(Cup cup) {
-        this.cup = cup;
-    }
 
     public CountryCup() {
     }
