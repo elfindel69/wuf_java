@@ -24,6 +24,10 @@ public class MatchLeague extends Match{
         this.league = league;
     }
 
+    public MatchLeague() {
+
+    }
+
     @Override
     public String toString() {
         return "MatchLeague{" +
