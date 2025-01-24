@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+
 public interface NationDao extends JpaRepository<Nation,Long> {
 
     List<Nation> findAllByConf(Conf conf);

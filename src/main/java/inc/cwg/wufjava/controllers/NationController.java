@@ -1,49 +1,46 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.manager.NationManager;
 import inc.cwg.wufjava.models.Match;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.services.MatchService;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "*")
+@RequiredArgsConstructor
+@RequestMapping("/nations")
+
 public class NationController {
-    private final MatchService matchService;
+    NationManager nationManager;
 
-    public NationController(MatchService matchService) {
-        this.matchService = matchService;
+
+    @GetMapping("/{id}")
+    public Nation getNation(@PathVariable Long id) {
+        return nationManager.fetchNation(id);
     }
 
-
-
-    private char[] getLastFiveResults(Nation nation) {
-        List<Match> matches = getMatches(nation);
-        int size = 5;
-        if (matches.size()<size){
-            size = matches.size();
-        }
-        char[] results = new char[size];
-        for(int i = 0; i < size; i++)
-        {
-            if ((matches.get(i).getHomeNation().getName().equals(nation.getName()) && matches.get(i).getScHome() > matches.get(i).getScAway())
-                    || (matches.get(i).getAwayNation().getName().equals(nation.getName()) && matches.get(i).getScHome() < matches.get(i).getScAway()))
-            {
-                results[i] = 'V';
-            }
-            else if (matches.get(i).getScHome() == matches.get(i).getScAway())
-            {
-                results[i] = 'N';
-            }
-            else
-            {
-                results[i] = 'D';
-            }
-        }
-        return results;
+    @GetMapping("/{name}")
+    public Nation getNation(@PathVariable String name) {
+        return nationManager.fetchNation(name);
     }
 
-    private List<Match> getMatches(Nation nation) {
-        return matchService.getFiveLastMatches(nation);
+    @GetMapping("/{id}/lastMatches")
+    public List<Match> getLastMatches(@RequestAttribute("id") Long id) {
+        return nationManager.getMatches(id);
     }
+
+    @PostMapping("/save")
+    public Nation saveNation(@RequestBody Nation nation) {
+        return nationManager.saveNation(nation);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteNation(@PathVariable Long id) {
+        nationManager.deleteNation(id);
+    }
+
 }
