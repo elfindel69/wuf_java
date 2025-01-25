@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.ConfHolder;
+import inc.cwg.wufjava.holders.WufBoardHolder;
 import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.WufBoard;
 import inc.cwg.wufjava.services.ConfService;
@@ -12,15 +14,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class WufBoardManager {
-    WufBoardService wufBoardService;
-    ConfService confService;
+    private final WufBoardService wufBoardService;
+    private final ConfService confService;
 
 
-    public WufBoard getWufBoard(long id) {
-        return wufBoardService.fetchWufBoard(id);
+    public WufBoardHolder getWufBoard(long id) {
+        WufBoard board = wufBoardService.fetchWufBoard(id);
+        return new WufBoardHolder(board);
     }
 
-    public List<Conf> getConfs(){
-        return confService.fetchConfs();
+    public List<ConfHolder> getConfs(){
+        return confService.fetchConfs().stream().map(ConfHolder::new).toList();
     }
 }

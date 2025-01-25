@@ -1,11 +1,10 @@
 package inc.cwg.wufjava.manager;
 
-import inc.cwg.wufjava.models.Match;
-import inc.cwg.wufjava.services.MatchService;
+import inc.cwg.wufjava.holders.NationHolder;
+import inc.cwg.wufjava.models.*;
+import inc.cwg.wufjava.services.*;
 import org.springframework.stereotype.Component;
 
-import inc.cwg.wufjava.models.Nation;
-import inc.cwg.wufjava.services.NationService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -15,13 +14,19 @@ import java.util.List;
 public class NationManager {
     private final NationService nationService;
     private final MatchService matchService;
+    private final WufBoardService wufBoardService;
+    private final StadiumService stadiumService;
+    private final ConfService confService;
 
-    public Nation fetchNation(Long id) {
-        return nationService.fetchNation(id);
+    public NationHolder fetchNation(Long id) {
+        Nation nation = nationService.fetchNation(id);
+        return new NationHolder(nation);
     }
 
-    public Nation fetchNation(String name) {
-        return nationService.fetchNation(name);
+    public NationHolder fetchNation(String name) {
+
+        Nation nation =  nationService.fetchNation(name);
+        return new NationHolder(nation);
     }
 
     public List<Match> getMatches(Long id) {
@@ -29,15 +34,39 @@ public class NationManager {
         return matchService.fetchMatches(nation);
     }
 
-    public Nation saveNation(Nation nation) {
-        return nationService.saveNation(nation);
+    public NationHolder saveNation(NationHolder holder) {
+        WufBoard wuf = wufBoardService.fetchWufBoard(1L);
+        Stadium stadium = stadiumService.fetchMainStadium(holder.getId());
+        Conf conf = confService.getConfByNation(holder.getId());
+        Nation nationToSave = nationBuilder(holder,stadium,wuf, conf);
+        Nation savedNation = nationService.saveNation(nationToSave);
+        return new NationHolder(savedNation);
     }
 
+    private Nation nationBuilder(NationHolder holder, Stadium stadium, WufBoard wuf, Conf conf) {
+        return new Nation(
+                holder.getName(),
+                holder.getPts(),
+                0,
+                conf,
+                holder.getAdmissionYear(),
+                stadium,
+                holder.getWufRanking(),
+                holder.getConfRanking(),
+                holder.getTimeZone(),
+                wuf
+        );
+    }
     public void deleteNation(Long id) {
         nationService.deleteNation(id);
     }
 
-    public List<Nation> getNations() {
-       return nationService.fetchNations();
+    public List<NationHolder> getNations() {
+       return nationService.fetchNations().stream().map(NationHolder::new).toList();
+    }
+
+    public List<Match> getFiveLastMatches(Long id) {
+        Nation n = nationService.fetchNation(id);
+        return matchService.fetchMatches(n).stream().toList().reversed().subList(0,5);
     }
 }

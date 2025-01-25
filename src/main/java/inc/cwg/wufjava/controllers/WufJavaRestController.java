@@ -4,6 +4,7 @@ import inc.cwg.wufjava.dto.CreateMatchDto;
 import inc.cwg.wufjava.dto.CreateMatchReturnDto;
 import inc.cwg.wufjava.holders.CalcPoints;
 import inc.cwg.wufjava.holders.CreateMatchHolder;
+import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.manager.*;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.ConfService;
@@ -51,8 +52,8 @@ public class WufJavaRestController {
 
 
         
-        Nation home = nationManager.fetchNation(createMatchDto.getHomeNation());
-        Nation away = nationManager.fetchNation(createMatchDto.getAwayNation());
+        NationHolder home = nationManager.fetchNation(createMatchDto.getHomeNation());
+        NationHolder away = nationManager.fetchNation(createMatchDto.getAwayNation());
         Stadium stadium = stadiumManager.fetchStadium(createMatchDto.getStadium());
         if (home == null || away == null) {
             throw new EntityNotFoundException("One or both nations not found.");

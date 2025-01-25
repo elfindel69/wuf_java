@@ -18,4 +18,6 @@ public interface ConfService {
     boolean deleteConf(long id);
 
     List<Nation> fetchConfRanking();
+
+    Conf getConfByNation(Long id);
 }

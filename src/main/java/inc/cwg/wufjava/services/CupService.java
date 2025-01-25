@@ -23,5 +23,7 @@ public interface CupService {
 
 
     List<Cup> fetchAllCups();
+
+    List<Cup> fetchCupsByNation(Nation n);
 }
     

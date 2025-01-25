@@ -52,4 +52,9 @@ public class ConfServiceImpl implements ConfService {
     public List<Nation> fetchConfRanking() {
         return confDao.findAllNationsOrderByPtsDesc();
     }
+
+    @Override
+    public Conf getConfByNation(Long id) {
+        return confDao.getConfByNationId(id);
+    }
 }

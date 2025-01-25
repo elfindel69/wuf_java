@@ -19,4 +19,6 @@ public interface StadiumService {
     Stadium fetchStadium(String name);
 
     List<Stadium> fetchStadiums(Nation nation);
+
+    Stadium fetchMainStadium(Long id);
 }

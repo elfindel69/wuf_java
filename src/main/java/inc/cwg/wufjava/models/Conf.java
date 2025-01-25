@@ -1,9 +1,14 @@
 package inc.cwg.wufjava.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 public class Conf extends Organization {
     @OneToMany(mappedBy = "conf", orphanRemoval = true)
@@ -19,46 +24,8 @@ public class Conf extends Organization {
     @JoinColumn(name = "wuf_board_id")
     private WufBoard wufBoard;
 
-    public WufBoard getWufBoard() {
-        return wufBoard;
-    }
-
-    public void setWufBoard(WufBoard wufBoard) {
-        this.wufBoard = wufBoard;
-    }
-
-    public List<ConfCup> getConfCups() {
-        return confCups;
-    }
-
-    public void setConfCups(List<ConfCup> confCups) {
-        this.confCups = confCups;
-    }
-
-    public List<ConfLeague> getConfLeagues() {
-        return confLeagues;
-    }
-
-    public void setConfLeagues(List<ConfLeague> confLeagues) {
-        this.confLeagues = confLeagues;
-    }
-
-    public List<Nation> getNations() {
-        return nations;
-    }
-
-    public void setNations(List<Nation> nations) {
-        this.nations = nations;
-    }
 
 
-    public int getNbMembers() {
-        return nbMembers;
-    }
-
-    public void setNbMembers(int nbMembers) {
-        this.nbMembers = nbMembers;
-    }
 
 
 

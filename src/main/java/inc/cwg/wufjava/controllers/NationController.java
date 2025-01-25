@@ -1,5 +1,7 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.dto.NationDto;
+import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.manager.NationManager;
 import inc.cwg.wufjava.models.Match;
 import inc.cwg.wufjava.models.Nation;
@@ -18,28 +20,32 @@ public class NationController {
     private final NationManager nationManager;
 
     @GetMapping("/")
-    public List<Nation> getNations() {
-        return nationManager.getNations();
+    public List<NationDto> getNations() {
+        return nationManager.getNations().stream().map(NationDto::new).toList();
     }
 
     @GetMapping("/{id}")
-    public Nation getNation(@PathVariable Long id) {
-        return nationManager.fetchNation(id);
+    public NationDto getNation(@PathVariable Long id) {
+        NationHolder holder = nationManager.fetchNation(id);
+        return new NationDto(holder);
     }
 
     @GetMapping("/{name}")
-    public Nation getNation(@PathVariable String name) {
-        return nationManager.fetchNation(name);
+    public NationDto getNation(@PathVariable String name) {
+        NationHolder holder = nationManager.fetchNation(name);
+        return new NationDto(holder);
     }
 
     @GetMapping("/{id}/lastMatches")
     public List<Match> getLastFiveMatches(@RequestAttribute("id") Long id) {
-        return nationManager.getMatches(id);
+        return nationManager.getFiveLastMatches(id);
     }
 
     @PostMapping("/save")
-    public Nation saveNation(@RequestBody Nation nation) {
-        return nationManager.saveNation(nation);
+    public NationDto saveNation(@RequestBody NationDto nation) {
+        NationHolder holder = new NationHolder(nation);
+        NationHolder savedHolder =  nationManager.saveNation(holder);
+        return new NationDto(savedHolder);
     }
 
     @DeleteMapping("/delete/{id}")

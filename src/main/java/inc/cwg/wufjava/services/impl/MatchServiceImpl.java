@@ -56,10 +56,7 @@ public class MatchServiceImpl implements MatchService {
         return matchDao.getMatchesByNation(nation);
     }
 
-    @Override
-    public List<Match> getLastFiveMatches(Nation nation) {
-        return  matchDao.getMatchesByNation(nation).subList(0,5);
-    }
+
 
 
 }

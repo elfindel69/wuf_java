@@ -1,6 +1,7 @@
 package inc.cwg.wufjava.manager;
 
 import inc.cwg.wufjava.models.CountryCup;
+import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.services.CountryCupService;
 import inc.cwg.wufjava.services.NationService;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CupManager {
     private final CupService cupService;
-    private final CountryCupService countryCupService;
+    private final NationService nationService;
 
     public Cup fetchCup(Long id) { return cupService.fetchCup(id);}
 
@@ -28,8 +29,8 @@ public class CupManager {
     }
 
     public List<Cup> fetchCupByNation(Long id){
-        CountryCup countryCup = countryCupService.fetchCountryCup(id);
-        return cupService.fetchAllCups(countryCup);
+        Nation n = nationService.fetchNation(id);
+        return cupService.fetchCupsByNation(n);
     }
 
     public Cup saveCup(Cup cup) {

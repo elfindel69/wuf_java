@@ -1,5 +1,8 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.dto.ConfDto;
+import inc.cwg.wufjava.dto.NationDto;
+import inc.cwg.wufjava.holders.ConfHolder;
 import inc.cwg.wufjava.manager.ConfManager;
 import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.Nation;
@@ -17,22 +20,25 @@ public class ConfController {
     private final ConfManager confManager;
 
     @GetMapping("/all")
-    public List<Conf> getAllConfs() {
-        return confManager.getConfs();
+    public List<ConfDto> getAllConfs() {
+        return confManager.getConfs().stream().map(ConfDto::new).toList();
     }
     @GetMapping("/{id}/nations")
-    public List<Nation> getNations(@RequestAttribute("id") Long id) {
-        return confManager.getNations(id);
+    public List<NationDto> getNations(@RequestAttribute("id") Long id) {
+        return confManager.getNations(id).stream().map(NationDto::new).toList();
     }
 
     @GetMapping("/{id}")
-    public Conf getConf(@PathVariable Long id) {
-        return confManager.getConf(id);
+    public ConfDto getConf(@PathVariable Long id) {
+        ConfHolder holder = confManager.getConf(id);
+        return new ConfDto(holder);
     }
 
     @PostMapping("/save")
-    public Conf saveConf(@RequestBody Conf conf) {
-        return confManager.save(conf);
+    public ConfDto saveConf(@RequestBody ConfDto conf) {
+        ConfHolder holder = new ConfHolder(conf);
+        ConfHolder savedHolder =  confManager.save(holder);
+        return new ConfDto(savedHolder);
     }
 
     @PostMapping("/{id}/delete")

@@ -48,6 +48,10 @@ public class CupServiceImpl implements CupService {
         return cupDao.findAll();
     }
 
+    @Override
+    public List<Cup> fetchCupsByNation(Nation n){
+        return cupDao.findCupsByCountry(n);
+    }
 
 
 

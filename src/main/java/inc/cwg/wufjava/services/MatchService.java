@@ -20,5 +20,5 @@ public interface MatchService {
 
     List<Match> fetchMatches(Nation nation);
 
-    List<Match> getLastFiveMatches(Nation nation);
+
 }

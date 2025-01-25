@@ -56,4 +56,9 @@ public class StadiumServiceImpl implements StadiumService {
     public List<Stadium> fetchStadiums(Nation nation) {
         return stadiumDao.getAllByCountry(nation);
     }
+
+    @Override
+    public Stadium fetchMainStadium(Long id) {
+        return stadiumDao.findStadiumByNationId(id);
+    }
 }

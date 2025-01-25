@@ -19,8 +19,8 @@ import lombok.Data;
 public class CreateMatchHolder {
     public CreateMatchHolder() {
     }
-    Nation homeNation;
-    Nation awayNation;
+    NationHolder homeNation;
+    NationHolder awayNation;
     Stadium stadium;
     CalcPoints calcPoints;
     MatchType matchType;

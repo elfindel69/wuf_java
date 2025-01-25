@@ -1,5 +1,8 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.dto.ConfDto;
+import inc.cwg.wufjava.dto.WufBoardDto;
+import inc.cwg.wufjava.holders.WufBoardHolder;
 import inc.cwg.wufjava.manager.WufBoardManager;
 import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.WufBoard;
@@ -16,17 +19,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/wufboard")
 public class WufBoardController {
-    WufBoardManager wufBoardManager;
+   private final WufBoardManager wufBoardManager;
 
 
     @GetMapping("/")
-    public WufBoard getWufBoard() {
-        return wufBoardManager.getWufBoard(1L);
+    public WufBoardDto getWufBoard() {
+        WufBoardHolder holder = wufBoardManager.getWufBoard(1L);
+        return new WufBoardDto(holder);
     }
 
     @GetMapping("/confs")
-    public List<Conf> getConfs(){
-        return wufBoardManager.getConfs();
+    public List<ConfDto> getConfs(){
+        return wufBoardManager.getConfs().stream().map(ConfDto::new).toList();
     }
 
 }
