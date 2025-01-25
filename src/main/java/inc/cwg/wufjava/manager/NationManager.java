@@ -1,5 +1,6 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.MatchHolder;
 import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.*;
@@ -65,8 +66,9 @@ public class NationManager {
        return nationService.fetchNations().stream().map(NationHolder::new).toList();
     }
 
-    public List<Match> getFiveLastMatches(Long id) {
+    public List<MatchHolder> getFiveLastMatches(Long id) {
         Nation n = nationService.fetchNation(id);
-        return matchService.fetchMatches(n).stream().toList().reversed().subList(0,5);
+        List<Match> matches = matchService.fetchMatches(n).stream().toList().reversed().subList(0,5);
+        return matches.stream().map(MatchHolder::new).toList();
     }
 }

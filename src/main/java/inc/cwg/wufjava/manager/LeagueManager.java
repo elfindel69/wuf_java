@@ -1,5 +1,6 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.LeagueHolder;
 import org.springframework.stereotype.Component;
 
 import inc.cwg.wufjava.models.League;
@@ -14,19 +15,23 @@ public class LeagueManager {
 
     private final LeagueService leagueService;
 
-    public League fetchLeague(Long id) {
-        return leagueService.fetchLeague(id);
+    public LeagueHolder fetchLeague(Long id) {
+        League league = leagueService.fetchLeague(id);
+        return new LeagueHolder(league);
     }
-    public League fetchLeague(String name) {
-        return leagueService.fetchLeague(name);
-    }
-
-    public List<League> fetchLeagues() {
-        return leagueService.fetchLeagues();
+    public LeagueHolder fetchLeague(String name) {
+        League league = leagueService.fetchLeague(name);
+        return new LeagueHolder(league);
     }
 
-    public League saveLeague(League league) {
-        return leagueService.saveLeague(league);
+    public List<LeagueHolder> fetchLeagues() {
+        return leagueService.fetchLeagues().stream().map(LeagueHolder::new).toList();
+    }
+
+    public LeagueHolder saveLeague(LeagueHolder leagueHolder) {
+        League league = new League(leagueHolder.getName(),leagueHolder.getEdition(),leagueHolder.getLevel());
+        League savedLeague = leagueService.saveLeague(league);
+        return new LeagueHolder(savedLeague);
     }
 
     public void delete(Long id) {

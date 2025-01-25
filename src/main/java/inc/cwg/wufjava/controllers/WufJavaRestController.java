@@ -4,6 +4,7 @@ import inc.cwg.wufjava.dto.CreateMatchDto;
 import inc.cwg.wufjava.dto.CreateMatchReturnDto;
 import inc.cwg.wufjava.holders.CalcPoints;
 import inc.cwg.wufjava.holders.CreateMatchHolder;
+import inc.cwg.wufjava.holders.LeagueHolder;
 import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.manager.*;
 import inc.cwg.wufjava.models.*;
@@ -75,7 +76,8 @@ public class WufJavaRestController {
            
         }
         if (createMatchDto.getLeague() != null){
-            league = leagueManager.fetchLeague(createMatchDto.getLeague());
+           LeagueHolder leagueHolder = leagueManager.fetchLeague(createMatchDto.getLeague());
+           league = new League(leagueHolder.getName(), leagueHolder.getEdition(), leagueHolder.getLevel());
         }
 
         ZonedDateTime matchDate = ZonedDateTime.of(createMatchDto.getDate(), ZoneId.of(createMatchDto.getTimeZone()));

@@ -1,7 +1,9 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.MatchHolder;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.NationService;
+import inc.cwg.wufjava.services.StadiumService;
 import org.springframework.stereotype.Component;
 
 import inc.cwg.wufjava.holders.CalcPoints;
@@ -9,6 +11,7 @@ import inc.cwg.wufjava.holders.CreateMatchHolder;
 import inc.cwg.wufjava.services.MatchService;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +21,15 @@ public class MatchManager {
 
     private final MatchService matchService;
     private final NationService nationService;
+    private final NationManager nationManager;
+    private final StadiumService stadiumService;
 
     public CreateMatchHolder doCreateMatch(CreateMatchHolder createMatchHolder) {
 
-        Match match = new Match(createMatchHolder.getHomeNation(),
-                createMatchHolder.getAwayNation(),
+        Nation homeNation = nationService.fetchNation(createMatchHolder.getHomeNation().getId());
+        Nation awayNation = nationService.fetchNation(createMatchHolder.getAwayNation().getId());
+        Match match = new Match(homeNation,
+                awayNation,
                 createMatchHolder.getCalcPoints().getSc1(),
                 createMatchHolder.getCalcPoints().getSc2(),
                 createMatchHolder.getDate(),
@@ -31,8 +38,8 @@ public class MatchManager {
         );
 
         if (createMatchHolder.getCup() != null) {
-            match = new MatchCup(createMatchHolder.getHomeNation(),
-                    createMatchHolder.getAwayNation(),
+            match = new MatchCup(homeNation,
+                    awayNation,
                     createMatchHolder.getCalcPoints().getSc1(),
                     createMatchHolder.getCalcPoints().getSc2(),
                     createMatchHolder.getDate(),
@@ -42,8 +49,8 @@ public class MatchManager {
             );
         }
         if (createMatchHolder.getLeague() != null) {
-            match = new MatchLeague(createMatchHolder.getHomeNation(),
-                    createMatchHolder.getAwayNation(),
+            match = new MatchLeague(homeNation,
+                    awayNation,
                     createMatchHolder.getCalcPoints().getSc1(),
                     createMatchHolder.getCalcPoints().getSc2(),
                     createMatchHolder.getDate(),
@@ -62,11 +69,11 @@ public class MatchManager {
         calcPoints.setPts1(newPoints.getPointsHome());
         calcPoints.setPts2(newPoints.getPointsAway());
 
-        Nation homeNation = createMatchHolder.getHomeNation();
+
         homeNation.setPts(newPoints.getPointsHome());
         nationService.saveNation(homeNation);
 
-        Nation awayNation = createMatchHolder.getAwayNation();
+
         awayNation.setPts(newPoints.getPointsAway());
         nationService.saveNation(awayNation);
 
@@ -74,24 +81,42 @@ public class MatchManager {
         return createMatchHolder;
     }
 
-    public Match getMatch(Long id) {
-        return matchService.fetchMatch(id);
+    public List<MatchHolder> getMatches() {
+        return matchService.fetchMatches().stream().map(MatchHolder::new).toList();
     }
 
-    public List<Match> getMatchesByNation(Long id) {
+    public MatchHolder getMatch(Long id) {
+        Match match = matchService.fetchMatch(id);
+        return new MatchHolder(match);
+    }
+
+    public List<MatchHolder> getMatchesByNation(Long id) {
         Nation nation = nationService.fetchNation(id);
-        return matchService.fetchMatches(nation);
+        return matchService.fetchMatches(nation).stream().map(MatchHolder::new).toList();
     }
 
-    public List<Match> getLastFiveMatches(Long id) {
-        Nation nation = nationService.fetchNation(id);
-        return matchService.getLastFiveMatches(nation);
+
+
+    public MatchHolder saveMatch(MatchHolder match) {
+        Match matchToSave = matchBuilder(match);
+        Match savedMatch = matchService.saveMatch(matchToSave);
+        return new MatchHolder(savedMatch);
     }
 
-    public Match saveMatch(Match match) {
-        return matchService.saveMatch(match);
+    private Match matchBuilder(MatchHolder match) {
+        Nation homeNation = nationService.fetchNation(match.getHomeTeam());
+        Nation awayNation = nationService.fetchNation(match.getAwayTeam());
+        Stadium venue = stadiumService.fetchStadium(match.getStadium());
+        return new Match (
+                homeNation,
+                awayNation,
+                match.getScHome(),
+                match.getScAway(),
+                LocalDateTime.parse(match.getMatchTime()),
+                match.getTimeZone(),
+                venue
+        );
     }
-
     public void delete(Long id) {
         matchService.deleteMatch(id);
     }

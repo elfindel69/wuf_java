@@ -1,11 +1,10 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.dto.MatchDto;
 import inc.cwg.wufjava.dto.NationDto;
 import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.manager.NationManager;
 import inc.cwg.wufjava.models.Match;
-import inc.cwg.wufjava.models.Nation;
-import inc.cwg.wufjava.services.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +36,8 @@ public class NationController {
     }
 
     @GetMapping("/{id}/lastMatches")
-    public List<Match> getLastFiveMatches(@RequestAttribute("id") Long id) {
-        return nationManager.getFiveLastMatches(id);
+    public List<MatchDto> getLastFiveMatches(@RequestAttribute("id") Long id) {
+        return nationManager.getFiveLastMatches(id).stream().map(MatchDto::new).toList();
     }
 
     @PostMapping("/save")
