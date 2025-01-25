@@ -1,8 +1,9 @@
 package inc.cwg.wufjava.controllers;
 
 
+import inc.cwg.wufjava.dto.CupDto;
+import inc.cwg.wufjava.holders.CupHolder;
 import inc.cwg.wufjava.manager.CupManager;
-import inc.cwg.wufjava.models.Cup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,28 +17,32 @@ public class CupController {
     private final CupManager manager;
 
     @GetMapping("/all")
-    public List<Cup> getAllCups() {
-        return manager.getAllCups();
+    public List<CupDto> getAllCups() {
+        return manager.getAllCups().stream().map(CupDto::new).toList();
     }
 
     @GetMapping("/all/{id}")
-    public List<Cup> getAllCups(@PathVariable Long id) {
-        return manager.fetchCupByNation(id);
+    public List<CupDto> getAllCups(@PathVariable Long id) {
+        return manager.fetchCupByNation(id).stream().map(CupDto::new).toList();
     }
 
     @GetMapping("/{id}")
-    public Cup getCup(@PathVariable Long id) {
-        return manager.fetchCup(id);
+    public CupDto getCup(@PathVariable Long id) {
+        CupHolder holder =  manager.fetchCup(id);
+        return new CupDto(holder);
     }
 
     @GetMapping("/{name}")
-    public Cup getCup(@PathVariable String name) {
-        return manager.fetchCup(name);
+    public CupDto getCup(@PathVariable String name) {
+        CupHolder holder = manager.fetchCup(name);
+        return new CupDto(holder);
     }
 
     @PostMapping
-    public Cup saveCup(@RequestBody Cup cup) {
-        return manager.saveCup(cup);
+    public CupDto saveCup(@RequestBody CupDto cup) {
+        CupHolder cupholder = new CupHolder(cup);
+        CupHolder savedHolder = manager.saveCup(cupholder);
+        return new CupDto(savedHolder);
     }
 
     @DeleteMapping("/{id}")

@@ -3,7 +3,6 @@ package inc.cwg.wufjava.controllers;
 import inc.cwg.wufjava.dto.LeagueDto;
 import inc.cwg.wufjava.holders.LeagueHolder;
 import inc.cwg.wufjava.manager.LeagueManager;
-import inc.cwg.wufjava.models.League;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

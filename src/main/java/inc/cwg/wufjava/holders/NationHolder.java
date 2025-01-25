@@ -29,6 +29,7 @@ public class NationHolder {
     private String lastCLResult;
     private String bestCLResult;
     private String timeZone;
+    private String mainVenue;
 
     public NationHolder(Nation nation) {
         this.id = nation.getId();
@@ -46,6 +47,7 @@ public class NationHolder {
         this.lastCLResult = nation.getLastCLResult();
         this.bestCLResult = nation.getBestCLResult();
         this.timeZone = nation.getTimeZone();
+        this.mainVenue = nation.getMainStadium().getName();
 
     }
 
@@ -65,7 +67,7 @@ public class NationHolder {
         this.lastCLResult = nationDto.getLastCLResult();
         this.bestCLResult = nationDto.getBestCLResult();
         this.timeZone = nationDto.getTimeZone();
-
+        this.mainVenue = nationDto.getMainVenue();
     }
 
 }

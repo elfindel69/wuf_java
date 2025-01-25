@@ -2,7 +2,6 @@ package inc.cwg.wufjava.manager;
 
 import inc.cwg.wufjava.holders.ConfHolder;
 import inc.cwg.wufjava.holders.WufBoardHolder;
-import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.models.WufBoard;
 import inc.cwg.wufjava.services.ConfService;
 import inc.cwg.wufjava.services.WufBoardService;

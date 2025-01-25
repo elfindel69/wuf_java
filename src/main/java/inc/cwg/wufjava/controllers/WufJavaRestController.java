@@ -2,10 +2,7 @@ package inc.cwg.wufjava.controllers;
 
 import inc.cwg.wufjava.dto.CreateMatchDto;
 import inc.cwg.wufjava.dto.CreateMatchReturnDto;
-import inc.cwg.wufjava.holders.CalcPoints;
-import inc.cwg.wufjava.holders.CreateMatchHolder;
-import inc.cwg.wufjava.holders.LeagueHolder;
-import inc.cwg.wufjava.holders.NationHolder;
+import inc.cwg.wufjava.holders.*;
 import inc.cwg.wufjava.manager.*;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.ConfService;
@@ -72,8 +69,10 @@ public class WufJavaRestController {
         Cup cup = null;
         League league = null;
         if (createMatchDto.getCup() != null){
-            cup = cupManager.fetchCup(createMatchDto.getCup());
-           
+            CupHolder cupHolder = cupManager.fetchCup(createMatchDto.getCup());
+            NationHolder hostHolder = nationManager.fetchNation(cupHolder.getHostName());
+            Nation host = nationManager.nationBuilder(hostHolder);
+            cup = cupManager.cupBuilder(cupHolder, host );
         }
         if (createMatchDto.getLeague() != null){
            LeagueHolder leagueHolder = leagueManager.fetchLeague(createMatchDto.getLeague());

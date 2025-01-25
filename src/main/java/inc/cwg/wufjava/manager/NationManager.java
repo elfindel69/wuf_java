@@ -36,15 +36,16 @@ public class NationManager {
     }
 
     public NationHolder saveNation(NationHolder holder) {
-        WufBoard wuf = wufBoardService.fetchWufBoard(1L);
-        Stadium stadium = stadiumService.fetchMainStadium(holder.getId());
-        Conf conf = confService.getConfByNation(holder.getId());
-        Nation nationToSave = nationBuilder(holder,stadium,wuf, conf);
+
+        Nation nationToSave = nationBuilder(holder);
         Nation savedNation = nationService.saveNation(nationToSave);
         return new NationHolder(savedNation);
     }
 
-    private Nation nationBuilder(NationHolder holder, Stadium stadium, WufBoard wuf, Conf conf) {
+    public Nation nationBuilder(NationHolder holder) {
+        WufBoard wuf = wufBoardService.fetchWufBoard(1L);
+        Stadium stadium = stadiumService.fetchMainStadium(holder.getId());
+        Conf conf = confService.getConfByNation(holder.getId());
         return new Nation(
                 holder.getName(),
                 holder.getPts(),
