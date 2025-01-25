@@ -52,14 +52,14 @@ public class WufJavaRestController {
         
         NationHolder home = nationManager.fetchNation(createMatchDto.getHomeNation());
         NationHolder away = nationManager.fetchNation(createMatchDto.getAwayNation());
-        Stadium stadium = stadiumManager.fetchStadium(createMatchDto.getStadium());
+        StadiumHolder stadiumHolder = stadiumManager.fetchStadium(createMatchDto.getStadium());
         if (home == null || away == null) {
             throw new EntityNotFoundException("One or both nations not found.");
         }
         if (home.equals(away)) {
             throw new IllegalArgumentException("Home and Away nations cannot be the same.");
         }
-        if (stadium == null) {
+        if (stadiumHolder == null) {
             throw new EntityNotFoundException("Stadium not found.");
         }
         Score score = CalcScoreManager.doCalcScores(home.getPts(),away.getPts());
@@ -80,7 +80,7 @@ public class WufJavaRestController {
         }
 
         ZonedDateTime matchDate = ZonedDateTime.of(createMatchDto.getDate(), ZoneId.of(createMatchDto.getTimeZone()));
-
+        Stadium stadium = stadiumManager.buildStadium(stadiumHolder);
         CreateMatchHolder createMatchHolder = CreateMatchHolder.builder()
                 .homeNation(home)
                 .awayNation(away)

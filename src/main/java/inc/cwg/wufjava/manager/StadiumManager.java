@@ -1,5 +1,6 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.StadiumHolder;
 import inc.cwg.wufjava.models.Nation;
 import inc.cwg.wufjava.services.NationService;
 import org.springframework.stereotype.Component;
@@ -17,28 +18,42 @@ public class StadiumManager {
     private final StadiumService stadiumService;
     private final NationService nationService;
 
-    public Stadium fetchStadium(Long id) {
-        return stadiumService.fetchStadium(id);
+    public StadiumHolder fetchStadium(Long id) {
+        Stadium stadium =  stadiumService.fetchStadium(id);
+        return new StadiumHolder(stadium);
     }
     
-    public Stadium fetchStadium(String name) {
-        return stadiumService.fetchStadium(name);
+    public StadiumHolder fetchStadium(String name) {
+        Stadium stadium =  stadiumService.fetchStadium(name);
+        return new StadiumHolder(stadium);
     }
 
-    public List<Stadium> findAll() {
-        return stadiumService.fetchStadiums();
+    public List<StadiumHolder> findAll() {
+        return stadiumService.fetchStadiums().stream().map(StadiumHolder::new).toList();
     }
 
-    public List<Stadium> findAll(Long id) {
+    public List<StadiumHolder> findAll(Long id) {
         Nation nation = nationService.fetchNation(id);
-        return stadiumService.fetchStadiums(nation);
+        return stadiumService.fetchStadiums(nation).stream().map(StadiumHolder::new).toList();
     }
 
-    public Stadium save(Stadium stadium) {
-        return stadiumService.saveStadium(stadium);
+    public StadiumHolder save(StadiumHolder holder) {
+        Stadium stadium = buildStadium(holder);
+        Stadium savedStadium =  stadiumService.saveStadium(stadium);
+        return new StadiumHolder(savedStadium);
     }
 
     public boolean delete(Long id) {
         return stadiumService.deleteStadium(id);
+    }
+
+    public Stadium buildStadium(StadiumHolder stadiumHolder) {
+        Nation country = nationService.fetchNation(stadiumHolder.getCountry());
+        return new Stadium(
+                stadiumHolder.getName(),
+                stadiumHolder.getCity(),
+                country
+        );
+
     }
 }
