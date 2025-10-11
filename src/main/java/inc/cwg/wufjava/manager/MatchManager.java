@@ -1,7 +1,9 @@
 package inc.cwg.wufjava.manager;
 
+import inc.cwg.wufjava.holders.MatchCupHolder;
 import inc.cwg.wufjava.holders.MatchHolder;
 import inc.cwg.wufjava.models.*;
+import inc.cwg.wufjava.services.MatchCupService;
 import inc.cwg.wufjava.services.NationService;
 import inc.cwg.wufjava.services.StadiumService;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ public class MatchManager {
 
     private final MatchService matchService;
     private final NationService nationService;
-    private final NationManager nationManager;
+    private final MatchCupService matchCupService;
     private final StadiumService stadiumService;
 
     public CreateMatchHolder doCreateMatch(CreateMatchHolder createMatchHolder) {
@@ -93,6 +95,12 @@ public class MatchManager {
     public List<MatchHolder> getMatchesByNation(Long id) {
         Nation nation = nationService.fetchNation(id);
         return matchService.fetchMatches(nation).stream().map(MatchHolder::new).toList();
+    }
+
+    public List<MatchCupHolder> fetchMatchesByCup(Long id) {
+
+        List<MatchCup> matches = matchCupService.fetchMatchesCup(id);
+        return matches.stream().map(MatchCupHolder::new).toList();
     }
 
 

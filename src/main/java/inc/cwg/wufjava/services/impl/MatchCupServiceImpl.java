@@ -28,6 +28,11 @@ public class MatchCupServiceImpl implements MatchCupService {
     }
 
     @Override
+    public List<MatchCup> fetchMatchesCup(Long id) {
+        return matchCupDao.findAllByCupId(id);
+    }
+
+    @Override
     public MatchCup fetchMatchCup(long id) {
         return matchCupDao.findById(id).orElse(null);
     }

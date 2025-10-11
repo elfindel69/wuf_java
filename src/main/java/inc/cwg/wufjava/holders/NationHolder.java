@@ -2,6 +2,7 @@ package inc.cwg.wufjava.holders;
 
 import inc.cwg.wufjava.dto.NationDto;
 import inc.cwg.wufjava.models.Nation;
+import inc.cwg.wufjava.models.Stadium;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -47,7 +48,8 @@ public class NationHolder {
         this.lastCLResult = nation.getLastCLResult();
         this.bestCLResult = nation.getBestCLResult();
         this.timeZone = nation.getTimeZone();
-        this.mainVenue = nation.getMainStadium().getName();
+        Stadium mainStadium = nation.getMainStadium() == null ? new Stadium() : nation.getMainStadium();
+        this.mainVenue = mainStadium.getName() == null||mainStadium.getName().isEmpty() ? "N/A" : mainStadium.getName();
 
     }
 
@@ -67,7 +69,7 @@ public class NationHolder {
         this.lastCLResult = nationDto.getLastCLResult();
         this.bestCLResult = nationDto.getBestCLResult();
         this.timeZone = nationDto.getTimeZone();
-        this.mainVenue = nationDto.getMainVenue();
+        this.mainVenue = nationDto.getMainVenue().isEmpty() ? "N/A" : nationDto.getMainVenue();
     }
 
 }

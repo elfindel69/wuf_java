@@ -32,11 +32,7 @@ public class CupController {
         return new CupDto(holder);
     }
 
-    @GetMapping("/{name}")
-    public CupDto getCup(@PathVariable String name) {
-        CupHolder holder = manager.fetchCup(name);
-        return new CupDto(holder);
-    }
+
 
     @PostMapping
     public CupDto saveCup(@RequestBody CupDto cup) {

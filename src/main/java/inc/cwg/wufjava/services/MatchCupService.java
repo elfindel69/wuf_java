@@ -11,6 +11,8 @@ public interface MatchCupService {
 
     List<MatchCup> fetchMatchesCup();
 
+    List<MatchCup> fetchMatchesCup(Long id);
+
     MatchCup fetchMatchCup(long id);
 
     MatchCup saveMatchCup(MatchCup m);

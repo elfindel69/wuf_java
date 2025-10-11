@@ -26,12 +26,6 @@ public class LeagueController {
         return new LeagueDto(holder);
     }
 
-    @GetMapping("/{name}")
-    public LeagueDto getLeague(@PathVariable String name) {
-        LeagueHolder holder = manager.fetchLeague(name);
-        return new LeagueDto(holder);
-    }
-
     @PostMapping("/save")
     public LeagueDto saveLeague(@RequestBody LeagueDto league){
         LeagueHolder leagueholder = new LeagueHolder(league);

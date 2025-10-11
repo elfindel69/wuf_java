@@ -1,9 +1,11 @@
 package inc.cwg.wufjava.manager;
 
 import inc.cwg.wufjava.holders.CupHolder;
+import inc.cwg.wufjava.holders.MatchCupHolder;
 import inc.cwg.wufjava.holders.NationHolder;
 import inc.cwg.wufjava.models.*;
 import inc.cwg.wufjava.services.NationService;
+import inc.cwg.wufjava.services.StadiumService;
 import org.springframework.stereotype.Component;
 
 import inc.cwg.wufjava.services.CupService;
@@ -17,10 +19,12 @@ public class CupManager {
     private final CupService cupService;
     private final NationService nationService;
     private final NationManager nationManager;
+    private final MatchManager matchManager;
 
     public CupHolder fetchCup(Long id) {
         Cup cup = cupService.fetchCup(id);
-        return new CupHolder(cup);
+        List<MatchCupHolder> matches = matchManager.fetchMatchesByCup(cup.getId());
+        return new CupHolder(cup,matches);
     }
 
     public CupHolder fetchCup(String name) {

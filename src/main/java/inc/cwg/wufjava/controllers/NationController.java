@@ -28,12 +28,6 @@ public class NationController {
         return new NationDto(holder);
     }
 
-    @GetMapping("/{name}")
-    public NationDto getNation(@PathVariable String name) {
-        NationHolder holder = nationManager.fetchNation(name);
-        return new NationDto(holder);
-    }
-
     @GetMapping("/{id}/lastMatches")
     public List<MatchDto> getLastFiveMatches(@RequestAttribute("id") Long id) {
         return nationManager.getFiveLastMatches(id).stream().map(MatchDto::new).toList();

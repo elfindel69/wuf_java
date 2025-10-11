@@ -1,12 +1,18 @@
 package inc.cwg.wufjava.controllers;
 
+import inc.cwg.wufjava.dto.CreateMatchDto;
+import inc.cwg.wufjava.dto.CreateMatchReturnDto;
 import inc.cwg.wufjava.dto.MatchDto;
-import inc.cwg.wufjava.holders.MatchHolder;
-import inc.cwg.wufjava.manager.MatchManager;
-import inc.cwg.wufjava.models.Match;
+import inc.cwg.wufjava.holders.*;
+import inc.cwg.wufjava.manager.*;
+import inc.cwg.wufjava.models.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import javax.swing.*;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -15,6 +21,7 @@ import java.util.List;
 @RequestMapping("/matches")
 public class MatchController {
     private final MatchManager manager;
+    private final WufJavaRestController restController;
 
     @GetMapping("/all")
     public List<MatchDto> getAllMatches() {
@@ -39,6 +46,11 @@ public class MatchController {
         MatchHolder matchholder = new MatchHolder(match);
         MatchHolder savedMatch =  manager.saveMatch(matchholder);
         return new MatchDto(savedMatch);
+    }
+
+    @PostMapping("/create")
+    public CreateMatchReturnDto createMatch(@RequestBody CreateMatchDto match){
+       return restController.doCreateMatch(match);
     }
 
     @DeleteMapping("/{id}")
