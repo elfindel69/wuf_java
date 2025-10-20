@@ -13,6 +13,7 @@ import lombok.Data;
 public class NationHolder {
     private Long id;
     private String name;
+    private String conf;
     private double pts;
     private String admissionYear;
 
@@ -35,6 +36,7 @@ public class NationHolder {
     public NationHolder(Nation nation) {
         this.id = nation.getId();
         this.name = nation.getName();
+        this.conf = nation.getConf().getName();
         this.pts = nation.getPts();
         this.admissionYear = nation.getAdmissionYear();
         this.wufRanking = nation.getWufRanking();
@@ -57,6 +59,7 @@ public class NationHolder {
         this.id = nationDto.getId();
         this.name = nationDto.getName();
         this.pts = nationDto.getPts();
+        this.conf = nationDto.getConf();
         this.admissionYear = nationDto.getAdmissionYear();
         this.wufRanking = nationDto.getWufRanking();
         this.confRanking = nationDto.getConfRanking();

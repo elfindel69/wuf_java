@@ -24,7 +24,7 @@ public class ConfController {
         return confManager.getConfs().stream().map(ConfDto::new).toList();
     }
     @GetMapping("/{id}/nations")
-    public List<NationDto> getNations(@RequestAttribute("id") Long id) {
+    public List<NationDto> getNations(@PathVariable Long id) {
         return confManager.getNations(id).stream().map(NationDto::new).toList();
     }
 

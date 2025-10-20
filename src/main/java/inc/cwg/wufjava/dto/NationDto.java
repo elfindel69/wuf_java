@@ -11,6 +11,7 @@ import lombok.Data;
 public class NationDto {
     private Long id;
     private String name;
+    private String conf;
     private double pts;
     private String admissionYear;
 
@@ -34,6 +35,7 @@ public class NationDto {
         this.id = nationHolder.getId();
         this.name = nationHolder.getName();
         this.pts = nationHolder.getPts();
+        this.conf = nationHolder.getConf();
         this.admissionYear = nationHolder.getAdmissionYear();
         this.wufRanking = nationHolder.getWufRanking();
         this.confRanking = nationHolder.getConfRanking();

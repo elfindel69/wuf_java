@@ -104,7 +104,7 @@ public class WufJavaRestController {
         return rankingManager.fetchWorldRanking(wufBoard);
     }
 
-    @GetMapping("/conf/{id}/ranking")
+    @GetMapping("/confs/{id}/ranking")
     List<Nation> getConfRanking(@PathVariable Long id){
         Conf conf = confService.fetchConf(id);
         return rankingManager.fetchConfRanking(conf);

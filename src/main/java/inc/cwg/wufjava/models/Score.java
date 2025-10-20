@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Score {
+public class    Score {
     private int scoreHome;
     private int scoreAway;
 
