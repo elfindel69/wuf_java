@@ -1,6 +1,6 @@
 package inc.cwg.wufjava.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class ConfLeague extends League{

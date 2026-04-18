@@ -4,8 +4,6 @@ import inc.cwg.wufjava.dto.ConfDto;
 import inc.cwg.wufjava.dto.NationDto;
 import inc.cwg.wufjava.holders.ConfHolder;
 import inc.cwg.wufjava.manager.ConfManager;
-import inc.cwg.wufjava.models.Conf;
-import inc.cwg.wufjava.models.Nation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

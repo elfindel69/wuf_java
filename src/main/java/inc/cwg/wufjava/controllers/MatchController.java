@@ -9,7 +9,7 @@ import inc.cwg.wufjava.models.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import javax.swing.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

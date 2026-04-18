@@ -29,7 +29,7 @@ public class NationController {
     }
 
     @GetMapping("/{id}/lastMatches")
-    public List<MatchDto> getLastFiveMatches(@RequestAttribute("id") Long id) {
+    public List<MatchDto> getLastFiveMatches(@PathVariable Long id) {
         return nationManager.getFiveLastMatches(id).stream().map(MatchDto::new).toList();
     }
 

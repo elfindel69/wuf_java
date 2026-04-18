@@ -64,7 +64,7 @@ public class NationManager {
     }
 
     public List<NationHolder> getNations() {
-       return nationService.fetchNations().stream().map(NationHolder::new).toList();
+       return nationService.fetchNations().stream().map(NationHolder::new).filter((nationHolder) -> nationHolder.getId() > 0L).toList();
     }
 
     public List<MatchHolder> getFiveLastMatches(Long id) {

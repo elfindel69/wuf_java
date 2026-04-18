@@ -5,7 +5,7 @@ import inc.cwg.wufjava.models.Conf;
 import inc.cwg.wufjava.services.*;
 import org.springframework.stereotype.Controller;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
